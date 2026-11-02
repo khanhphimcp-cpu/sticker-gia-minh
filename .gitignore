@@ -1,0 +1,4 @@
+*.py
+*.log
+*.tmp
+deploy_github.py
