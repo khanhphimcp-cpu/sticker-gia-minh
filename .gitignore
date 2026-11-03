@@ -1,4 +1,9 @@
 *.py
 *.log
 *.tmp
-deploy_github.py
+.DS_Store
+Thumbs.db
+dist
+node_modules
+sticker-gia-minh-*.json
+key_b64.txt
