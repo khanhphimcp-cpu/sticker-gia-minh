@@ -6237,9 +6237,9 @@ body.phone-mode .visitor-counter {
     }
 
 
-    /* HIỆU ỨNG TEM TÁCH NỀN 3D BAY BỒNG BỀNH (FLOATING STICKERS)*/
+    /* HIỆU ỨNG TEM TÁCH NỀN 3D BAY BỒNG BỀNH - TRÒN TUYỆT ĐỐI KHÔNG VIỀN VUÔNG */
     /* ======================================================== */
-    
+
     .phone-mode .cards-deck {
       width: 250px !important;
       height: 250px !important;
@@ -6248,21 +6248,30 @@ body.phone-mode .visitor-counter {
       transform-style: preserve-3d !important;
       touch-action: pan-y;
       cursor: grab;
+      border: none !important;
+      box-shadow: none !important;
+      background: transparent !important;
     }
 
-    .phone-mode .fan-card {
+    .phone-mode .fan-card,
+    .phone-mode .fan-card.slot-left,
+    .phone-mode .fan-card.slot-center,
+    .phone-mode .fan-card.slot-right {
       width: 250px !important;
       height: 250px !important;
       background: transparent !important;
       border: none !important;
+      border-color: transparent !important;
       box-shadow: none !important;
-      border-radius: 0 !important;
+      outline: none !important;
+      border-radius: 50% !important;
       position: absolute !important;
       top: 0 !important;
       left: 0 !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
+      overflow: visible !important;
       transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s ease, filter 0.65s ease !important;
     }
 
@@ -6276,52 +6285,58 @@ body.phone-mode .visitor-counter {
       height: 96% !important;
       object-fit: contain !important;
       background: transparent !important;
-      border-radius: 0 !important;
-      filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.75)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5)) !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      border-radius: 50% !important;
+      user-select: none;
+      -webkit-user-drag: none;
       transition: filter 0.5s ease, transform 0.5s ease !important;
     }
 
-    /* CÁC VỊ TRÍ 3D TRỤC NGHIÊNG (COVERFLOW) */
+    /* CÁC VỊ TRÍ 3D TRỤC NGHIÊNG */
     .phone-mode .fan-card.slot-left {
-      transform: translateX(-100px) translateZ(-90px) rotateY(38deg) scale(0.82) !important;
-      opacity: 0.55 !important;
-      filter: brightness(0.65) blur(0.5px) !important;
+      transform: translateX(-95px) translateZ(-80px) rotateY(35deg) scale(0.8) !important;
+      opacity: 0.5 !important;
+      filter: brightness(0.65) drop-shadow(0 10px 18px rgba(0, 0, 0, 0.75)) !important;
       z-index: 2 !important;
       pointer-events: none;
     }
 
     .phone-mode .fan-card.slot-center {
-      transform: translateX(0px) translateZ(40px) rotateY(0deg) scale(1.08) !important;
+      transform: translateX(0px) translateZ(45px) rotateY(0deg) scale(1.08) !important;
       opacity: 1 !important;
       filter: brightness(1.02) !important;
       z-index: 10 !important;
     }
 
     .phone-mode .fan-card.slot-center img {
-      filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 25px rgba(168, 85, 247, 0.5)) !important;
-      animation: floatTransparentSticker 3s ease-in-out infinite alternate !important;
+      /* HÀO QUANG VÀNG KIM & TÍM TRÒN ÔM SÁT CON TEM - KHÔNG GÓC VUÔNG */
+      filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 20px rgba(168, 85, 247, 0.45)) !important;
+      animation: floatTransparentSticker 3.2s ease-in-out infinite alternate !important;
     }
 
     @keyframes floatTransparentSticker {
       0% { transform: translateY(0px) rotate(0deg); }
-      100% { transform: translateY(-8px) rotate(1.2deg); }
+      50% { transform: translateY(-7px) rotate(0.8deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
     }
 
     .phone-mode .fan-card.slot-right {
-      transform: translateX(100px) translateZ(-90px) rotateY(-38deg) scale(0.82) !important;
-      opacity: 0.55 !important;
-      filter: brightness(0.65) blur(0.5px) !important;
+      transform: translateX(95px) translateZ(-80px) rotateY(-35deg) scale(0.8) !important;
+      opacity: 0.5 !important;
+      filter: brightness(0.65) drop-shadow(0 10px 18px rgba(0, 0, 0, 0.75)) !important;
       z-index: 2 !important;
       pointer-events: none;
     }
 
     /* ĐĨA BÓNG ĐỔ DƯỚI ĐÁY CON TEM */
     .sticker-floor-shadow {
-      width: 140px;
-      height: 16px;
+      width: 130px;
+      height: 12px;
       background: radial-gradient(ellipse at center, rgba(0,0,0,0.75) 0%, rgba(168,85,247,0.2) 45%, transparent 75%);
       border-radius: 50%;
-      margin: 6px auto 4px;
+      margin: 4px auto 6px;
       filter: blur(2px);
     }
 
@@ -6541,18 +6556,9 @@ body.phone-mode .visitor-counter {
       <!-- ĐĨA BÓNG ĐỔ DƯỚI ĐÁY CON TEM TÁCH NỀN -->
       <div class="sticker-floor-shadow"></div>
 
-      <!-- BỘ LỌC CHỦ ĐỀ NGÀNH HÀNG DÀNH RIÊNG CHO OPTION 2 -->
-      <div class="opt2-category-bar">
-        <button class="opt2-cat-pill is-active" onclick="filterByCat('all', event)">✨ Tất Cả (15)</button>
-        <button class="opt2-cat-pill" onclick="filterByCat('my-pham', event)">💄 Mỹ Phẩm & Spa</button>
-        <button class="opt2-cat-pill" onclick="filterByCat('an-vat', event)">🍱 Ăn Vặt & Bánh</button>
-        <button class="opt2-cat-pill" onclick="filterByCat('tra-sua', event)">🧋 Trà Sữa & Cafe</button>
-        <button class="opt2-cat-pill" onclick="filterByCat('qua-bieu', event)">🧧 Yến Sào & Nông Sản</button>
-      </div>
-
-      <!-- CHỈ DẪN VUỐT CẢM ỨNG TRÊN MOBILE -->
+      <!-- CHỈ DẪN VUỐT CẢM ỨNG TRÊN MOBILE - ÁP SÁT CHÂN TEM -->
       <div class="mobile-swipe-hint">
-        <span>👈 Vuốt tay lướt 15 mẫu tem tách nền 3D 👉</span>
+        <span>👈 Vuốt tay lướt xem các mẫu tem 3D thực tế 👉</span>
       </div>
 
     </div>
@@ -8175,11 +8181,15 @@ body.phone-mode .visitor-counter {
     }
 
     function updateLoop() {
-      if (!isPaused && !isMoving) {
+      // Trên điện thoại (phone-mode hoặc mobile screen), tắt tự động chạy để người dùng hoàn toàn làm chủ vuốt tay
+      const isMobileDevice = document.body.classList.contains('phone-mode') || window.innerWidth <= 768;
+      if (!isPaused && !isMoving && !isMobileDevice) {
         const elapsed = Date.now() - timerStartTime;
-        const percent = Math.min((elapsed / cycleDuration) * 100, 100);
-        timerBar.style.width = percent + '%';
-
+        const timerBarEl = document.getElementById('timerBar');
+        if (timerBarEl) {
+          const percent = Math.min((elapsed / cycleDuration) * 100, 100);
+          timerBarEl.style.width = percent + '%';
+        }
         if (elapsed >= cycleDuration) {
           rotateForward();
         }
