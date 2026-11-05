@@ -13,30 +13,6 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-          <!-- OPEN GRAPH / FACEBOOK LINK PREVIEW TAGS CHUẨN MỰC -->
-  <meta property="fb:app_id" content="966242223397117">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://stickergiaminh.com/">
-  <meta property="og:site_name" content="Nhà In Sticker Gia Minh">
-  <meta property="og:title" content="Sticker Gia Minh – Tự Tính Giá Online Trong 3 Giây">
-  <meta property="og:description" content="Kho 1.000+ mẫu tem thực tế đa ngành • Thiết kế miễn phí 100% • Hỗ trợ ship 15.000đ toàn quốc.">
-  <meta property="og:image" content="https://stickergiaminh.com/og-banner.png?v=5">
-  <meta property="og:image:secure_url" content="https://stickergiaminh.com/og-banner.png?v=5">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Nhà In Sticker Gia Minh - Tự Tính Giá Online Trong 3 Giây">
-  <meta property="article:publisher" content="https://www.facebook.com/stickergiaminhprint/">
-  <meta property="og:see_also" content="https://www.facebook.com/stickergiaminhprint/">
-
-  <!-- TWITTER / ZALO CARD TAGS -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://stickergiaminh.com/">
-  <meta name="twitter:title" content="Sticker Gia Minh – Tự Tính Giá Online Trong 3 Giây">
-  <meta name="twitter:description" content="Kho 1.000+ mẫu tem thực tế đa ngành • Thiết kế miễn phí 100% • Hỗ trợ ship 15.000đ toàn quốc.">
-  <meta name="twitter:image" content="https://stickergiaminh.com/og-banner.png?v=5">
-
   <!-- FAVICON CHÍNH THỨC CỦA STICKER GIA MINH -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -44,7 +20,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <meta name="msapplication-TileImage" content="android-chrome-192x192.png">
 
-  <title>Sticker Gia Minh | Dịch Vụ Thiết Kế & In Tem Nhãn Chuyên Nghiệp</title>
+  <title>Bản Demo Option 2: 3D Coverflow Vô Cực Sang Trọng | Sticker Gia Minh</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
@@ -664,18 +640,7 @@
     }
 
     .card-floating-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 16px 14px 10px;
-      background: linear-gradient(to top, rgba(10, 6, 20, 0.95) 0%, rgba(10, 6, 20, 0.65) 60%, transparent 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 2px;
-      backdrop-filter: blur(5px);
+      display: none !important;
     }
 
     .card-name {
@@ -2137,6 +2102,16 @@
       width: 175px;
       height: 175px;
     }
+    .phone-mode .cards-deck.is-dragging {
+      cursor: grabbing !important;
+    }
+    .phone-mode .cards-deck.is-dragging .fan-card {
+      transition: none !important;
+    }
+    .phone-mode .cards-deck.is-dragging .fan-card.slot-center img {
+      animation-play-state: paused !important;
+    }
+
     body.phone-mode .fan-card {
       width: 175px;
       height: 175px;
@@ -5766,57 +5741,690 @@ body.phone-mode .visitor-counter {
 
 
     /* ======================================================== */
-    /* CHẾ ĐỘ NỀN TẢNG CHO TRANG WEB CHÍNH THỨC                 */
+    /* NÂNG CẤP TRẢI NGHIỆM MOBILE: STORIES, TOUCH CALC & STICKY */
     /* ======================================================== */
-    .demo-bar {
-      display: none !important;
+    
+    /* 1. THANH STORIES KHÁM PHÁ NHANH TRÊN MOBILE */
+    .mobile-stories-bar {
+      display: none;
+      width: 100%;
+      padding: 10px 12px 14px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .mobile-stories-bar::-webkit-scrollbar {
+      display: none;
+    }
+    .mobile-stories-track {
+      display: inline-flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .mobile-story-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      width: 66px;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .mobile-story-item:active {
+      transform: scale(0.92);
+    }
+    .mobile-story-ring {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(135deg, #ec4899, #a855f7, #38bdf8);
+      position: relative;
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.35);
+    }
+    .mobile-story-ring.active-story {
+      box-shadow: 0 0 0 2px #38bdf8, 0 4px 14px rgba(56, 189, 248, 0.5);
+    }
+    .mobile-story-ring img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 2px solid #0b0717;
+      background: #1e1b2e;
+    }
+    .mobile-story-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #cbd5e1;
+      text-align: center;
+      line-height: 1.15;
+      white-space: nowrap;
     }
 
-    /* TRÊN MÀN HÌNH DI ĐỘNG THẬT (<= 768px): FULL VIỀN 100%, KHÔNG TAI THỎ GIẢ, KHÔNG THU NHỎ 62% */
-    @media (max-width: 768px) {
-      /* ??M B?O HI?N TH? CHU?N MOBILE NGAY L?P T?C QUA CSS NATIVE (0ms latency) */
-      .desktop-only-header-cta { display: none !important; }
-      .mobile-only-header-cta { display: inline-flex !important; }
-      .desktop-only-process { display: none !important; }
-      .mobile-only-process { display: flex !important; }
-      .desktop-only-footer { display: none !important; }
-      .mobile-only-footer, .mobile-footer-compact { display: flex !important; }
+    /* 2. KHUNG TRẢI NGHIỆM CON TEM TRỰC QUAN (TOUCH STAGE) */
+    .mobile-touch-calc-box {
+      display: none;
+      flex-direction: column;
+      background: linear-gradient(180deg, rgba(30, 27, 75, 0.7) 0%, rgba(15, 23, 42, 0.85) 100%);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      border-radius: 20px;
+      padding: 18px 14px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(12px);
+    }
+    .touch-stage-canvas {
+      width: 100%;
+      height: 175px;
+      background: radial-gradient(circle at center, rgba(168, 85, 247, 0.22) 0%, rgba(15, 23, 42, 0.7) 70%);
+      border: 1px dashed rgba(168, 85, 247, 0.3);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .touch-sticker-preview {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.5), 0 0 0 3px rgba(255,255,255,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      text-align: center;
+      transition: width 0.12s ease-out, height 0.12s ease-out, border-radius 0.2s ease, background 0.3s ease;
+      position: relative;
+    }
+    .touch-sticker-preview img {
+      width: 42px;
+      height: auto;
+      object-fit: contain;
+      margin-bottom: 3px;
+    }
+    .touch-sticker-preview span {
+      font-size: 9.5px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.1;
+    }
+    .touch-dimension-badge {
+      margin-top: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      color: #38bdf8;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 999px;
+    }
 
-      html, body, body.phone-mode {
-        padding: 0 !important;
-        margin: 0 !important;
-        width: 100% !important;
-        background: #020106 !important;
-        overflow-x: hidden !important;
+    /* 3. THANH TRƯỢT KÍCH THƯỚC & SỐ LƯỢNG */
+    .touch-slider-group {
+      margin-bottom: 16px;
+    }
+    .touch-slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .touch-slider-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+    .touch-slider-val {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #facc15;
+    }
+    .touch-range-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.15);
+      outline: none;
+      margin: 6px 0;
+    }
+    .touch-range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a855f7, #38bdf8);
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(56, 189, 248, 0.6);
+      border: 2px solid #ffffff;
+      transition: transform 0.1s;
+    }
+    .touch-range-slider::-webkit-slider-thumb:active {
+      transform: scale(1.2);
+    }
+    .touch-preset-pills {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .touch-preset-pills::-webkit-scrollbar {
+      display: none;
+    }
+    .touch-preset-btn {
+      flex: 1;
+      min-width: 52px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #94a3b8;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 4px;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .touch-preset-btn.is-active {
+      background: rgba(168, 85, 247, 0.3);
+      border-color: #c084fc;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(168, 85, 247, 0.4);
+    }
+
+    /* 4. CHỌN HÌNH DÁNG 1 CHẠM */
+    .touch-shapes-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .touch-shape-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 8px 2px;
+      color: #94a3b8;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .touch-shape-btn.is-active {
+      background: rgba(56, 189, 248, 0.18);
+      border-color: #38bdf8;
+      color: #38bdf8;
+      font-weight: 700;
+    }
+    .touch-shape-btn span {
+      font-size: 10px;
+    }
+
+    /* 5. KHỐI GIÁ NỔI BẬT */
+    .touch-price-box {
+      background: linear-gradient(135deg, rgba(234, 179, 8, 0.15) 0%, rgba(168, 85, 247, 0.18) 100%);
+      border: 1px solid rgba(234, 179, 8, 0.4);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .touch-price-label {
+      font-size: 11.5px;
+      color: #cbd5e1;
+    }
+    .touch-price-val {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fef08a;
+      letter-spacing: -0.5px;
+    }
+    .touch-unit-val {
+      font-size: 11px;
+      color: #c084fc;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* 6. THANH GHIM ĐÁY MÀN HÌNH */
+    .mobile-sticky-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: rgba(11, 7, 23, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(168, 85, 247, 0.35);
+      padding: 10px 14px;
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.7);
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .sticky-bar-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .sticky-bar-label {
+      font-size: 10.5px;
+      color: #94a3b8;
+    }
+    .sticky-bar-price {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fef08a;
+    }
+    .sticky-btn-zalo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #0284c7, #0068ff);
+      color: #ffffff !important;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 9px 16px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+      white-space: nowrap;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .sticky-btn-zalo:active {
+      transform: scale(0.96);
+    }
+
+    /* HIỂN THỊ KHI Ở CHẾ ĐỘ MOBILE HOẶC PHONE-MODE */
+    body.phone-mode .mobile-stories-bar,
+    body.phone-mode .mobile-touch-calc-box,
+    body.phone-mode .mobile-sticky-bar {
+      display: flex !important;
+    }
+    @media (max-width: 768px) {
+      .mobile-stories-bar,
+      .mobile-touch-calc-box,
+      .mobile-sticky-bar {
+        display: flex !important;
       }
-      body.phone-mode #siteWrapper,
-      #siteWrapper {
-        transform: none !important;
+    }
+
+
+    /* ======================================================== */
+    
+    
+    
+    /* ======================================================== */
+    
+    
+    @media (max-width: 600px) {
+      .demo-bar {
+        padding: 5px 8px !important;
+        justify-content: center !important;
+      }
+      .demo-bar .controls-group,
+      .demo-bar .demo-title > span {
+        display: none !important;
+      }
+      .demo-bar .demo-title {
         width: 100% !important;
-        max-width: 100% !important;
-        min-height: 100vh !important;
+        justify-content: center !important;
+        margin: 0 !important;
+      }
+    }
+
+    /* TỐI ƯU KHI MỞ TRỰC TIẾP TRÊN MÀN HÌNH ĐIỆN THOẠI THẬT */
+    @media (max-width: 600px) {
+      body.phone-mode {
+        padding: 0 !important;
+        background: #020105 !important;
+      }
+      body.phone-mode #phoneStage {
         height: auto !important;
         margin: 0 !important;
-        padding: 0 0 40px 0 !important;
+        padding: 0 !important;
+      }
+      body.phone-mode #siteWrapper {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
         border: none !important;
         border-radius: 0 !important;
         box-shadow: none !important;
-        overflow-x: hidden !important;
-        background: radial-gradient(circle at 50% 10%, #15092a 0%, #07030e 55%, #020105 100%) !important;
+        transform: none !important;
+        background: transparent !important;
       }
       body.phone-mode #siteWrapper::before,
-      .card-floating-caption { display: none !important; }
-      body.phone-mode #siteWrapper::after,
-      #siteWrapper::before,
-      #siteWrapper::after {
+      body.phone-mode #siteWrapper::after {
         display: none !important;
       }
+    }
+
+    /* ======================================================== */
+    /* PHƯƠNG ÁN MỚI: ĐƯA 3D MOCKUP LÊN HÀNG ĐẦU & VUỐT TAY CẢM ỨNG */
+    /* ======================================================== */
+
+    .phone-mode .hero-container {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      padding-top: 10px !important;
+    }
+
+    .phone-mode .hero-content {
+      display: contents !important;
+    }
+
+    .phone-mode .hero-brand-hero {
+      order: 1 !important;
+      margin-bottom: 6px !important;
+    }
+    .phone-mode .hero-brand-title {
+      font-size: 23px !important;
+      letter-spacing: -0.3px !important;
+    }
+    .phone-mode .hero-brand-subtitle {
+      font-size: 13px !important;
+      color: #38bdf8 !important;
+      font-weight: 700 !important;
+    }
+
+    /* ĐƯA 3D MOCKUP LÊN VỊ TRÍ SỐ 2 (NGAY DƯỚI TIÊU ĐỀ) */
+    .phone-mode .fan-stage {
+      order: 2 !important;
+      height: auto !important;
+      min-height: 255px !important;
+      width: 100% !important;
+      max-width: 360px !important;
+      margin: 0 auto 2px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      position: relative !important;
+    }
+
+    /* THANH LỌC CHỦ ĐỀ NGÀNH HÀNG OPTION 2 */
+    .opt2-category-bar {
+      display: flex;
+      overflow-x: auto;
+      white-space: nowrap;
+      gap: 6px;
+      padding: 4px 4px 6px;
+      width: 100%;
+      max-width: 360px;
+      margin: 2px auto 6px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      justify-content: flex-start;
+    }
+    .opt2-category-bar::-webkit-scrollbar {
+      display: none;
+    }
+    .opt2-cat-pill {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+      flex-shrink: 0;
+    }
+    .opt2-cat-pill.is-active,
+    .opt2-cat-pill:hover {
+      background: linear-gradient(135deg, #a855f7, #0284c7);
+      color: #ffffff;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.35);
+    }
+
+    .mobile-swipe-hint {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin: -6px auto 4px !important;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #e2e8f0;
+      background: rgba(168, 85, 247, 0.16);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      backdrop-filter: blur(8px);
+      padding: 5px 14px;
+      border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 12px rgba(168, 85, 247, 0.25);
+      z-index: 15;
+      position: relative;
+    }
+
+    /* BỘ 4 TRỤ CỘT & NÚT HÀNH ĐỘNG ĐỨNG SAU 3D DECK */
+    .phone-mode .retention-grid {
+      order: 5 !important;
+      width: 100% !important;
+      margin-top: 2px !important;
+    }
+    .phone-mode .hero-actions {
+      order: 6 !important;
+      width: 100% !important;
+    }
+
+
+    /* HIỆU ỨNG TEM TÁCH NỀN 3D BAY BỒNG BỀNH - TRÒN TUYỆT ĐỐI KHÔNG VIỀN VUÔNG */
+    /* ======================================================== */
+
+    .phone-mode .cards-deck {
+      width: 250px !important;
+      height: 250px !important;
+      margin: 0 auto !important;
+      position: relative !important;
+      transform-style: preserve-3d !important;
+      touch-action: none !important;
+      cursor: grab;
+      border: none !important;
+      box-shadow: none !important;
+      background: transparent !important;
+    }
+
+    .phone-mode .cards-deck.is-dragging {
+      cursor: grabbing !important;
+    }
+    .phone-mode .cards-deck.is-dragging .fan-card {
+      transition: none !important;
+      will-change: transform, opacity !important;
+    }
+    .phone-mode .cards-deck.is-dragging .fan-card img {
+      filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.65)) !important;
+      animation: none !important;
+    }
+
+    .phone-mode .fan-card,
+    .phone-mode .fan-card.slot-left,
+    .phone-mode .fan-card.slot-center,
+    .phone-mode .fan-card.slot-right {
+      width: 250px !important;
+      height: 250px !important;
+      background: transparent !important;
+      border: none !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+      outline: none !important;
+      border-radius: 50% !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      overflow: visible !important;
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s ease, filter 0.65s ease !important;
+    }
+
+    /* ẨN TOÀN BỘ KHUNG VIỀN CHỮ DƯỚI CARD ĐỂ CON TEM BAY TỰ DO */
+    .phone-mode .card-floating-caption {
+      display: none !important;
+    }
+
+    .phone-mode .fan-card img {
+      width: 96% !important;
+      height: 96% !important;
+      object-fit: contain !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      border-radius: 50% !important;
+      user-select: none;
+      -webkit-user-drag: none;
+      transition: filter 0.5s ease, transform 0.5s ease !important;
+    }
+
+    /* CÁC VỊ TRÍ 3D TRỤC NGHIÊNG */
+    .phone-mode .fan-card.slot-left {
+      transform: translateX(-95px) translateZ(-80px) rotateY(35deg) scale(0.8) !important;
+      opacity: 0.5 !important;
+      filter: brightness(0.65) drop-shadow(0 10px 18px rgba(0, 0, 0, 0.75)) !important;
+      z-index: 2 !important;
+      pointer-events: none;
+    }
+
+    .phone-mode .fan-card.slot-center {
+      transform: translateX(0px) translateZ(45px) rotateY(0deg) scale(1.08) !important;
+      opacity: 1 !important;
+      filter: brightness(1.02) !important;
+      z-index: 10 !important;
+    }
+
+    .phone-mode .fan-card.slot-center img {
+      /* HÀO QUANG VÀNG KIM & TÍM TRÒN ÔM SÁT CON TEM - KHÔNG GÓC VUÔNG */
+      filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 20px rgba(168, 85, 247, 0.45)) !important;
+      animation: floatTransparentSticker 3.2s ease-in-out infinite alternate !important;
+    }
+
+    @keyframes floatTransparentSticker {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-7px) rotate(0.8deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    .phone-mode .fan-card.slot-right {
+      transform: translateX(95px) translateZ(-80px) rotateY(-35deg) scale(0.8) !important;
+      opacity: 0.5 !important;
+      filter: brightness(0.65) drop-shadow(0 10px 18px rgba(0, 0, 0, 0.75)) !important;
+      z-index: 2 !important;
+      pointer-events: none;
+    }
+
+    /* ĐĨA BÓNG ĐỔ DƯỚI ĐÁY CON TEM */
+    .sticker-floor-shadow {
+      width: 130px;
+      height: 12px;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.75) 0%, rgba(168,85,247,0.2) 45%, transparent 75%);
+      border-radius: 50%;
+      margin: 4px auto 6px;
+      filter: blur(2px);
+    }
+
+    /* NÚT BẤM ZALO MẢNH MAI TINH TẾ CHO MÁY TÍNH */
+    .desktop-zalo-cta-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 22px;
+      padding: 8px 22px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #e2e8f0;
+      background: rgba(168, 85, 247, 0.12);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      border-radius: 999px;
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+      transition: all 0.25s ease;
+      cursor: pointer;
+      position: relative;
+      z-index: 10;
+    }
+    .desktop-zalo-cta-pill:hover {
+      background: rgba(168, 85, 247, 0.24);
+      border-color: rgba(192, 132, 252, 0.65);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+    }
+
+    /* TRÊN MÁY TÍNH: ẨN DÒNG VUỐT TAY MOBILE */
+    body:not(.phone-mode) .mobile-swipe-hint {
+      display: none !important;
+    }
+
+    /* TRÊN ĐIỆN THOẠI: ẨN NÚT ZALO DESKTOP ĐỂ BẢO VỆ NGUYÊN VẸN BẢN MOBILE */
+    body.phone-mode .desktop-zalo-cta-pill {
+      display: none !important;
+    }
+    @media (max-width: 768px) {
+      .desktop-zalo-cta-pill {
+        display: none !important;
+      }
+    }
+
+
+    /* BẢN CHÍNH THỨC: CON TEM TRÒN TÁCH NỀN BAY BỒNG BỀNH CẢ TRÊN DESKTOP */
+    .fan-card {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      border-radius: 50% !important;
+    }
+    .fan-card img {
+      width: 95% !important;
+      height: 95% !important;
+      object-fit: contain !important;
+      border-radius: 50% !important;
+      filter: drop-shadow(0 15px 25px rgba(0,0,0,0.85)) drop-shadow(0 0 25px rgba(168,85,247,0.45)) !important;
+    }
+    .fan-card.slot-center img {
+      animation: floatTransparentSticker 3.2s ease-in-out infinite alternate !important;
     }
 
 </style>
 </head>
 <body>
-  <!-- B?C N?I DUNG TRANG WEB CH?NH TH?C -->
+
+  
   <div id="siteWrapper">
 
   <!-- HEADER GIA MINH (LOGO BÊN TRÁI - MENU TAB & ZALO BÊN PHẢI CHUẨN MỰC) -->
@@ -5859,6 +6467,9 @@ body.phone-mode .visitor-counter {
 
   <!-- BỐ CỤC CHÍNH (HERO 2 CỘT) -->
   <div class="hero-container">
+
+  
+
 
     <!-- CỘT TRÁI: ĐẦY ĐỦ SLOGAN & NỘI DUNG GỐC CỦA STICKER GIA MINH -->
     <div class="hero-content">
@@ -5942,54 +6553,48 @@ body.phone-mode .visitor-counter {
 
     <!-- CỘT PHẢI: 3 TẤM HÌNH LỚN TRÀN VIỀN ĐẢO LỚP XOAY VÒNG -->
     <div class="fan-stage">
-      
-      <!-- KHUNG 3 TẤM THẺ ĐẢO VỊ TRÍ CHO NHAU -->
+
+      <!-- KHUNG 3 TẤM TEM TÁCH NỀN ĐẢO VỊ TRÍ CHO NHAU -->
       <div class="cards-deck" id="cardsDeck">
-        
+
         <!-- THẺ 1 (TRÁI) -->
         <div class="fan-card slot-left" id="cardEl0">
-          <img id="img0" src="HINH XOAY/mockup_20260901_112020.png" alt="Hạt Sen Sấy Giòn">
+          <img id="img0" src="TEM_TACH_NEN/15.png" alt="Tem Tách Nền">
           <div class="card-floating-caption">
-            <div class="card-name" id="name0">Hạt Sen Sấy Giòn</div>
-            <div class="card-style" id="style0">Thanh tao, tao nhã, truyền thống</div>
+            <div class="card-name" id="name0"></div>
+            <div class="card-style" id="style0"></div>
           </div>
         </div>
 
-        <!-- THẺ 2 (GIỮA - NỔI BẬT) -->
+        <!-- THẺ 2 (GIỮA - NỔI BẬT BAY BỒNG BỀNH) -->
         <div class="fan-card slot-center" id="cardEl1">
-          <img id="img1" src="HINH XOAY/01_sticker_tết_an_phúc_mùa_xuân.png" alt="Bánh Quy Tết Mùa Xuân">
+          <img id="img1" src="TEM_TACH_NEN/1.png" alt="Tem Tách Nền">
           <div class="card-floating-caption">
-            <div class="card-name" id="name1">Bánh Quy Tết Mùa Xuân</div>
-            <div class="card-style" id="style1">Đầm ấm, sắc xuân rộn ràng</div>
+            <div class="card-name" id="name1"></div>
+            <div class="card-style" id="style1"></div>
           </div>
         </div>
 
         <!-- THẺ 3 (PHẢI) -->
         <div class="fan-card slot-right" id="cardEl2">
-          <img id="img2" src="HINH XOAY/02_sticker_thiết_kế_trà_trái_cây.png" alt="Trà Trái Cây Nhiệt Đới">
+          <img id="img2" src="TEM_TACH_NEN/2.png" alt="Tem Tách Nền">
           <div class="card-floating-caption">
-            <div class="card-name" id="name2">Trà Trái Cây Nhiệt Đới</div>
-            <div class="card-style" id="style2">Tươi mát, ngọt ngào, đáng yêu</div>
+            <div class="card-name" id="name2"></div>
+            <div class="card-style" id="style2"></div>
           </div>
         </div>
 
       </div>
 
-      <!-- THANH THỜI GIAN VÀ THÔNG TIN MẪU ĐANG Ở VỊ TRÍ TRUNG TÂM -->
-      <div class="fan-footer">
-        <div class="category-label" id="catLabel">
-          <span class="dot"></span>
-          <span id="spotlightText">Đang nổi bật: Bánh Quy Tết Mùa Xuân</span>
-        </div>
-
-        <div class="timer-bar-wrap">
-          <div class="timer-bar" id="timerBar"></div>
-        </div>
-
-        <div class="dots-nav" id="dotsContainer">
-          <!-- 11 Chấm đại diện cho 11 mẫu thực tế xoay vòng -->
-        </div>
+      <!-- CHỈ DẪN VUỐT CẢM ỨNG TRÊN MOBILE - ĐÈ LÊN ĐÁY CHÂN CON TEM -->
+      <div class="mobile-swipe-hint">
+        <span>👈 Vuốt tay lướt xem các mẫu tem 3D thực tế 👉</span>
       </div>
+
+      <!-- NÚT BẤM ZALO MẢNH MAI DÀNH CHO MÁY TÍNH (DESKTOP) -->
+      <a href="https://zalo.me/0937650121?text=Ch%C3%A0o%20Sticker%20Gia%20Minh%2C%20m%C3%ACnh%20xem%20m%E1%BA%ABu%20tem%203D%20tr%C3%AAn%20website%20v%C3%A0%20mu%E1%BB%91n%20nh%E1%BA%ADn%20thi%E1%BA%BFt%20k%E1%BA%BF%20ri%C3%AAng!" target="_blank" rel="noopener" class="desktop-zalo-cta-pill">
+        <span>💬 Nhắn Zalo để nhận thiết kế riêng ➜</span>
+      </a>
 
     </div>
 
@@ -6140,6 +6745,9 @@ body.phone-mode .visitor-counter {
     <!-- BẢN DÀNH RIÊNG CHO ĐIỆN THOẠI (TỐI ƯU CỰC GỌN)        -->
     <!-- ===================================================== -->
     <div class="calc-container mobile-only-calc">
+
+    
+
       <!-- THẺ TRÁI ĐIỆN THOẠI: FORM NHẬP CÙNG HÀNG GỌN GÀNG -->
       <div class="calc-form-card">
         <div class="calc-card-header-badge">
@@ -6493,6 +7101,174 @@ body.phone-mode .visitor-counter {
 
 
   <!-- ======================================================== -->
+  <!-- VIDEO THỰC TẾ XƯỞNG IN & THÀNH PHẨM (REELS)              -->
+  <!-- ======================================================== -->
+  <section id="video-thuc-te" class="video-section">
+    <!-- TIÊU ĐỀ CHO MÁY TÍNH (GIỮ NGUYÊN 100% GỐC) -->
+    <div class="video-section-header desktop-only-header">
+      <div class="video-header-left">
+        <div class="badge">🎬 THƯỚC PHIM THỰC TẾ</div>
+        <h2>Thước Phim <span class="highlight-grad">Quy Trình & Thành Phẩm</span></h2>
+        <p class="sub-desc">
+          Khám phá quy trình in ấn kỹ thuật số hiện đại, bế demi sắc nét & độ bền tem nhãn thực tế trên Fanpage Sticker Gia Minh.
+        </p>
+      </div>
+      <a href="https://www.facebook.com/stickergiaminhprint/reels/" target="_blank" class="fanpage-btn">
+        <span>👍 Xem Thêm 100+ Reels Trên Fanpage</span>
+        <span>➜</span>
+      </a>
+    </div>
+
+    <!-- TIÊU ĐỀ CHO ĐIỆN THOẠI (CĂN GIỮA, TINH GỌN) -->
+    <div class="demo-section-header mobile-only-header section-header-compact">
+      <div class="section-badge-center">
+        <span class="section-badge badge-video badge-prominent">🎬 THƯỚC PHIM IN ẤN THỰC TẾ</span>
+      </div>
+    </div>
+
+    <div class="video-layout-grid">
+      <!-- Cột Trái: Trình Phát Video Lớn -->
+      <div class="video-player-container">
+        <div class="player-frame-wrap">
+          <iframe id="mainReelFrame"
+            src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1636158290821288&show_text=0&width=360"
+            style="border:none;overflow:hidden"
+            scrolling="no"
+            frameborder="0"
+            allowfullscreen="true"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+          </iframe>
+        </div>
+        <div class="player-meta-bar">
+          <div class="player-current-title" id="currentReelTitle">⭐ Test Cồn 90° & Kháng Nước Tuyệt Đối</div>
+          <a href="https://www.facebook.com/reel/1636158290821288" target="_blank" id="currentReelFbLink" class="player-open-fb">
+            Mở FB ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Cột Phải: Playlist 6 Video -->
+      <div class="video-playlist-container">
+        <div class="playlist-header-title">
+          <span>Danh Sách Thước Phim Tuyển Chọn</span>
+          <small>Bấm vào video để xem ngay 🎬</small>
+        </div>
+
+        <!-- Video 1 (Test Cồn - Ghim đầu tiên) -->
+        <div class="video-playlist-item active" 
+             data-url="https://www.facebook.com/reel/1636158290821288" 
+             data-title="⭐ Test Cồn 90° & Kháng Nước Tuyệt Đối"
+             onclick="switchReel(this)">
+          <div class="video-thumb-wrap">
+            <img src="assets/videos/thumb_reel_2.png" alt="Test Cồn 90° Decal Nhựa">
+            <div class="video-thumb-play-icon">▶</div>
+          </div>
+          <div class="video-info-wrap">
+            <div class="video-tags-row">
+              <span class="video-pill-badge video-pill-featured">⭐ NỔI BẬT NHẤT</span>
+              <span class="video-pill-badge video-pill-category">Thử Nghiệm Độ Bền</span>
+            </div>
+            <div class="video-card-title">Test Cồn 90° & Kháng Nước Tuyệt Đối</div>
+            <p class="video-card-desc">Decal nhựa không cán màng ngâm nước & cồn 90° không lem màu, không bong tróc.</p>
+          </div>
+        </div>
+
+        <!-- Video 2 (Yến Sào Mai Tâm - Gửi sau cùng) -->
+        <div class="video-playlist-item" 
+             data-url="https://www.facebook.com/reel/1644780337296287" 
+             data-title="Tem Yến Sào Mai Tâm - Bế Viền Uốn Lượn"
+             onclick="switchReel(this)">
+          <div class="video-thumb-wrap">
+            <img src="assets/videos/thumb_reel_6.png" alt="Tem Yến Sào Mai Tâm">
+            <div class="video-thumb-play-icon">▶</div>
+          </div>
+          <div class="video-info-wrap">
+            <div class="video-tags-row">
+              <span class="video-pill-badge video-pill-category">Yến Sào Cao Cấp</span>
+            </div>
+            <div class="video-card-title">Tem Yến Sào Mai Tâm - Bế Viền Tinh Xảo</div>
+            <p class="video-card-desc">Tem bế viền uốn lượn sắc sảo, tone đỏ kim sang trọng in ấn sắc nét tại Sticker Gia Minh.</p>
+          </div>
+        </div>
+
+        <!-- Video 3 (Cao Ngựa Bạch) -->
+        <div class="video-playlist-item" 
+             data-url="https://www.facebook.com/reel/1640891077399385" 
+             data-title="Tem Cao Ngựa Bạch - Nhà Long Đen TV"
+             onclick="switchReel(this)">
+          <div class="video-thumb-wrap">
+            <img src="assets/videos/thumb_reel_5.png" alt="Tem Cao Ngựa Bạch">
+            <div class="video-thumb-play-icon">▶</div>
+          </div>
+          <div class="video-info-wrap">
+            <div class="video-tags-row">
+              <span class="video-pill-badge video-pill-category">Thực Phẩm & Dược Liệu</span>
+            </div>
+            <div class="video-card-title">Tem Cao Ngựa Bạch - Nhà Long Đen TV</div>
+            <p class="video-card-desc">Tem chữ nhật bo góc sắc nét, hệ thống máy in kỹ thuật số vận hành chuẩn xác từng milimet.</p>
+          </div>
+        </div>
+
+        <!-- Video 4 (Chà Bông Heo) -->
+        <div class="video-playlist-item" 
+             data-url="https://www.facebook.com/reel/1055337320796246" 
+             data-title="Tem Chà Bông Heo - Bé Hai Chợ Búng"
+             onclick="switchReel(this)">
+          <div class="video-thumb-wrap">
+            <img src="assets/videos/thumb_reel_4.png" alt="Tem Chà Bông Heo">
+            <div class="video-thumb-play-icon">▶</div>
+          </div>
+          <div class="video-info-wrap">
+            <div class="video-tags-row">
+              <span class="video-pill-badge video-pill-category">Đặc Sản & Đồ Ăn Vặt</span>
+            </div>
+            <div class="video-card-title">Tem Chà Bông Heo - Bé Hai Chợ Búng</div>
+            <p class="video-card-desc">Tem elip màu cam tươi tắn, bế demi sẵn từng con lột dán nhanh và tiện lợi.</p>
+          </div>
+        </div>
+
+        <!-- Video 5 (Busan Cafe) -->
+        <div class="video-playlist-item" 
+             data-url="https://www.facebook.com/reel/1075819361481039" 
+             data-title="Tem Busan Cafe Phong Cảnh Biển"
+             onclick="switchReel(this)">
+          <div class="video-thumb-wrap">
+            <img src="assets/videos/thumb_reel_3.png" alt="Tem Busan Cafe">
+            <div class="video-thumb-play-icon">▶</div>
+          </div>
+          <div class="video-info-wrap">
+            <div class="video-tags-row">
+              <span class="video-pill-badge video-pill-category">Cà Phê & Đồ Uống</span>
+            </div>
+            <div class="video-card-title">Tem Busan Cafe Phong Cảnh Biển</div>
+            <p class="video-card-desc">Chi tiết vẽ phong cảnh biển siêu nét, mực in tươi sáng và độ phân giải cao.</p>
+          </div>
+        </div>
+
+        <!-- Video 6 (Bánh Nhà Làm - Tỷ Hỷ) -->
+        <div class="video-playlist-item" 
+             data-url="https://www.facebook.com/reel/1677034820031542" 
+             data-title="Tem Tròn Bánh Nhà Làm - Tỷ Hỷ"
+             onclick="switchReel(this)">
+          <div class="video-thumb-wrap">
+            <img src="assets/videos/thumb_reel_1.png" alt="Tem Bánh Nhà Làm Tỷ Hỷ">
+            <div class="video-thumb-play-icon">▶</div>
+          </div>
+          <div class="video-info-wrap">
+            <div class="video-tags-row">
+              <span class="video-pill-badge video-pill-category">Bánh Ngọt & Đồ Ăn</span>
+            </div>
+            <div class="video-card-title">Tem Tròn Bánh Nhà Làm - Tỷ Hỷ</div>
+            <p class="video-card-desc">Tem tròn bóc dán thực tế trên tay mượt mà, keo dính chắc trên mọi bề mặt ly hộp.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================== -->
   <!-- 3. PHÂN VÙNG: ỨNG DỤNG TRÊN SẢN PHẨM THỰC TẾ (#ung-dung)  -->
   <!-- ======================================================== -->
   <section class="demo-section" id="ung-dung">
@@ -6747,172 +7523,7 @@ body.phone-mode .visitor-counter {
   <!-- 5. FOOTER THƯƠNG HIỆU GIA MINH                           -->
   <!-- ======================================================== -->
   
-  <!-- ======================================================== -->
-  <!-- VIDEO THỰC TẾ XƯỞNG IN & THÀNH PHẨM (REELS)              -->
-  <!-- ======================================================== -->
-  <section id="video-thuc-te" class="video-section">
-    <!-- TIÊU ĐỀ CHO MÁY TÍNH (GIỮ NGUYÊN 100% GỐC) -->
-    <div class="video-section-header desktop-only-header">
-      <div class="video-header-left">
-        <div class="badge">🎬 THƯỚC PHIM THỰC TẾ</div>
-        <h2>Thước Phim <span class="highlight-grad">Quy Trình & Thành Phẩm</span></h2>
-        <p class="sub-desc">
-          Khám phá quy trình in ấn kỹ thuật số hiện đại, bế demi sắc nét & độ bền tem nhãn thực tế trên Fanpage Sticker Gia Minh.
-        </p>
-      </div>
-      <a href="https://www.facebook.com/stickergiaminhprint/reels/" target="_blank" class="fanpage-btn">
-        <span>👍 Xem Thêm 100+ Reels Trên Fanpage</span>
-        <span>➜</span>
-      </a>
-    </div>
-
-    <!-- TIÊU ĐỀ CHO ĐIỆN THOẠI (CĂN GIỮA, TINH GỌN) -->
-    <div class="demo-section-header mobile-only-header section-header-compact">
-      <div class="section-badge-center">
-        <span class="section-badge badge-video badge-prominent">🎬 THƯỚC PHIM IN ẤN THỰC TẾ</span>
-      </div>
-    </div>
-
-    <div class="video-layout-grid">
-      <!-- Cột Trái: Trình Phát Video Lớn -->
-      <div class="video-player-container">
-        <div class="player-frame-wrap">
-          <iframe id="mainReelFrame"
-            src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1636158290821288&show_text=0&width=360"
-            style="border:none;overflow:hidden"
-            scrolling="no"
-            frameborder="0"
-            allowfullscreen="true"
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-          </iframe>
-        </div>
-        <div class="player-meta-bar">
-          <div class="player-current-title" id="currentReelTitle">⭐ Test Cồn 90° & Kháng Nước Tuyệt Đối</div>
-          <a href="https://www.facebook.com/reel/1636158290821288" target="_blank" id="currentReelFbLink" class="player-open-fb">
-            Mở FB ↗
-          </a>
-        </div>
-      </div>
-
-      <!-- Cột Phải: Playlist 6 Video -->
-      <div class="video-playlist-container">
-        <div class="playlist-header-title">
-          <span>Danh Sách Thước Phim Tuyển Chọn</span>
-          <small>Bấm vào video để xem ngay 🎬</small>
-        </div>
-
-        <!-- Video 1 (Test Cồn - Ghim đầu tiên) -->
-        <div class="video-playlist-item active" 
-             data-url="https://www.facebook.com/reel/1636158290821288" 
-             data-title="⭐ Test Cồn 90° & Kháng Nước Tuyệt Đối"
-             onclick="switchReel(this)">
-          <div class="video-thumb-wrap">
-            <img src="assets/videos/thumb_reel_2.png" alt="Test Cồn 90° Decal Nhựa">
-            <div class="video-thumb-play-icon">▶</div>
-          </div>
-          <div class="video-info-wrap">
-            <div class="video-tags-row">
-              <span class="video-pill-badge video-pill-featured">⭐ NỔI BẬT NHẤT</span>
-              <span class="video-pill-badge video-pill-category">Thử Nghiệm Độ Bền</span>
-            </div>
-            <div class="video-card-title">Test Cồn 90° & Kháng Nước Tuyệt Đối</div>
-            <p class="video-card-desc">Decal nhựa không cán màng ngâm nước & cồn 90° không lem màu, không bong tróc.</p>
-          </div>
-        </div>
-
-        <!-- Video 2 (Yến Sào Mai Tâm - Gửi sau cùng) -->
-        <div class="video-playlist-item" 
-             data-url="https://www.facebook.com/reel/1644780337296287" 
-             data-title="Tem Yến Sào Mai Tâm - Bế Viền Uốn Lượn"
-             onclick="switchReel(this)">
-          <div class="video-thumb-wrap">
-            <img src="assets/videos/thumb_reel_6.png" alt="Tem Yến Sào Mai Tâm">
-            <div class="video-thumb-play-icon">▶</div>
-          </div>
-          <div class="video-info-wrap">
-            <div class="video-tags-row">
-              <span class="video-pill-badge video-pill-category">Yến Sào Cao Cấp</span>
-            </div>
-            <div class="video-card-title">Tem Yến Sào Mai Tâm - Bế Viền Tinh Xảo</div>
-            <p class="video-card-desc">Tem bế viền uốn lượn sắc sảo, tone đỏ kim sang trọng in ấn sắc nét tại Sticker Gia Minh.</p>
-          </div>
-        </div>
-
-        <!-- Video 3 (Cao Ngựa Bạch) -->
-        <div class="video-playlist-item" 
-             data-url="https://www.facebook.com/reel/1640891077399385" 
-             data-title="Tem Cao Ngựa Bạch - Nhà Long Đen TV"
-             onclick="switchReel(this)">
-          <div class="video-thumb-wrap">
-            <img src="assets/videos/thumb_reel_5.png" alt="Tem Cao Ngựa Bạch">
-            <div class="video-thumb-play-icon">▶</div>
-          </div>
-          <div class="video-info-wrap">
-            <div class="video-tags-row">
-              <span class="video-pill-badge video-pill-category">Thực Phẩm & Dược Liệu</span>
-            </div>
-            <div class="video-card-title">Tem Cao Ngựa Bạch - Nhà Long Đen TV</div>
-            <p class="video-card-desc">Tem chữ nhật bo góc sắc nét, hệ thống máy in kỹ thuật số vận hành chuẩn xác từng milimet.</p>
-          </div>
-        </div>
-
-        <!-- Video 4 (Chà Bông Heo) -->
-        <div class="video-playlist-item" 
-             data-url="https://www.facebook.com/reel/1055337320796246" 
-             data-title="Tem Chà Bông Heo - Bé Hai Chợ Búng"
-             onclick="switchReel(this)">
-          <div class="video-thumb-wrap">
-            <img src="assets/videos/thumb_reel_4.png" alt="Tem Chà Bông Heo">
-            <div class="video-thumb-play-icon">▶</div>
-          </div>
-          <div class="video-info-wrap">
-            <div class="video-tags-row">
-              <span class="video-pill-badge video-pill-category">Đặc Sản & Đồ Ăn Vặt</span>
-            </div>
-            <div class="video-card-title">Tem Chà Bông Heo - Bé Hai Chợ Búng</div>
-            <p class="video-card-desc">Tem elip màu cam tươi tắn, bế demi sẵn từng con lột dán nhanh và tiện lợi.</p>
-          </div>
-        </div>
-
-        <!-- Video 5 (Busan Cafe) -->
-        <div class="video-playlist-item" 
-             data-url="https://www.facebook.com/reel/1075819361481039" 
-             data-title="Tem Busan Cafe Phong Cảnh Biển"
-             onclick="switchReel(this)">
-          <div class="video-thumb-wrap">
-            <img src="assets/videos/thumb_reel_3.png" alt="Tem Busan Cafe">
-            <div class="video-thumb-play-icon">▶</div>
-          </div>
-          <div class="video-info-wrap">
-            <div class="video-tags-row">
-              <span class="video-pill-badge video-pill-category">Cà Phê & Đồ Uống</span>
-            </div>
-            <div class="video-card-title">Tem Busan Cafe Phong Cảnh Biển</div>
-            <p class="video-card-desc">Chi tiết vẽ phong cảnh biển siêu nét, mực in tươi sáng và độ phân giải cao.</p>
-          </div>
-        </div>
-
-        <!-- Video 6 (Bánh Nhà Làm - Tỷ Hỷ) -->
-        <div class="video-playlist-item" 
-             data-url="https://www.facebook.com/reel/1677034820031542" 
-             data-title="Tem Tròn Bánh Nhà Làm - Tỷ Hỷ"
-             onclick="switchReel(this)">
-          <div class="video-thumb-wrap">
-            <img src="assets/videos/thumb_reel_1.png" alt="Tem Bánh Nhà Làm Tỷ Hỷ">
-            <div class="video-thumb-play-icon">▶</div>
-          </div>
-          <div class="video-info-wrap">
-            <div class="video-tags-row">
-              <span class="video-pill-badge video-pill-category">Bánh Ngọt & Đồ Ăn</span>
-            </div>
-            <div class="video-card-title">Tem Tròn Bánh Nhà Làm - Tỷ Hỷ</div>
-            <p class="video-card-desc">Tem tròn bóc dán thực tế trên tay mượt mà, keo dính chắc trên mọi bề mặt ly hộp.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
+  
 
   
   <!-- ======================================================== -->
@@ -7359,13 +7970,13 @@ body.phone-mode .visitor-counter {
       <!-- BỘ ĐẾM TRUY CẬP (VISITOR COUNTER) -->
       <div class="visitor-counter">
         <span class="online-pulse-dot" title="Đang hoạt động"></span>
-        <span>Đang online: <strong id="counterOnline">1</strong></span>
+        <span>Đang online: <strong>2</strong></span>
         <span>•</span>
-        <span>Hôm nay: <strong id="counterToday">30</strong></span>
+        <span>Hôm nay: <strong>48</strong></span>
         <span>•</span>
-        <span>Tháng này: <strong id="counterMonth">221</strong></span>
+        <span>Tháng này: <strong>386</strong></span>
         <span>•</span>
-        <span>Tổng lượt xem: <strong id="counterTotal">1.682</strong></span>
+        <span>Tổng lượt xem: <strong>1.520</strong></span>
       </div>
     </div>
   </footer>
@@ -7398,63 +8009,26 @@ body.phone-mode .visitor-counter {
 
   <script>
     // DANH SÁCH 11 MẪU TEM MOCKUP THỰC TẾ CỦA GIA MINH
-    const stickerList = [
-      {
-        name: "Bánh Quy Tết Mùa Xuân",
-        style: "Đầm ấm, sắc xuân rộn ràng",
-        img: "HINH XOAY/01_sticker_tết_an_phúc_mùa_xuân.png"
-      },
-      {
-        name: "Trà Trái Cây Nhiệt Đới",
-        style: "Tươi mát, ngọt ngào, đáng yêu",
-        img: "HINH XOAY/02_sticker_thiết_kế_trà_trái_cây.png"
-      },
-      {
-        name: "Kem Body Dưỡng Sáng",
-        style: "Sang trọng, quý phái, kiêu sa",
-        img: "HINH XOAY/05_nhãn_sản_phẩm_mộc_vân_cao_cấp.png"
-      },
-      {
-        name: "Mắm Tép Trộn Đu Đủ",
-        style: "Dân dã, đậm đà vị quê hương",
-        img: "HINH XOAY/07_nhãn_dán_mắm_tép_trộn_đu_đủ.png"
-      },
-      {
-        name: "Yến Sào Thượng Hạng",
-        style: "Trang nhã, tinh tế, cao cấp",
-        img: "HINH XOAY/15_nhãn_dán_yến_kim_phúc.png"
-      },
-      {
-        name: "Bánh Tráng & Cơm Cháy",
-        style: "Trẻ trung, vui tươi, bắt mắt",
-        img: "HINH XOAY/26_sticker_tiệm_ăn_vặt_mộc_nhi.png"
-      },
-      {
-        name: "Tẩy Tế Bào Chết Cà Phê",
-        style: "Mộc mạc, vintage, tự nhiên",
-        img: "HINH XOAY/MOCKUP_08_imagegen.png"
-      },
-      {
-        name: "Sầu Riêng Tươi Nguyên Chất",
-        style: "Rực rỡ, thơm lành, hấp dẫn",
-        img: "HINH XOAY/mockup_20260731_091004.png"
-      },
-      {
-        name: "Cháo Gỏi Gà Vịt",
-        style: "Ấm cúng, gần gũi, ngon miệng",
-        img: "HINH XOAY/mockup_20260803_114732.png"
-      },
-      {
-        name: "Khô Bò & Đồ Ăn Vặt",
-        style: "Giòn ngon, kích thích vị giác",
-        img: "HINH XOAY/mockup_20260830_092220.png"
-      },
-      {
-        name: "Hạt Sen Sấy Giòn",
-        style: "Thanh tao, tao nhã, truyền thống",
-        img: "HINH XOAY/mockup_20260901_112020.png"
-      }
+    
+    // DANH SÁCH 15 MẪU TEM TÁCH NỀN TRONG SUỐT (OPTION 2: FLOATING 3D)
+        const stickerList = [
+      { name: "Kem Body Mộc Vân Luxury", style: "Cắt bế tròn • Decal nhũ vàng sang trọng", img: "TEM_TACH_NEN/1.png", cat: "my-pham" },
+      { name: "Bếp Mèo Miu – Ăn Vặt Nhà Làm", style: "Cắt bế tròn • Decal sữa tươi sáng cute", img: "TEM_TACH_NEN/2.png", cat: "an-vat" },
+      { name: "Bánh Tráng Cô Nhi", style: "Cắt bế tròn • Decal sữa cán màng bóng", img: "TEM_TACH_NEN/3.png", cat: "an-vat" },
+      { name: "Trà Sữa & Ăn Vặt Miu Miu", style: "Cắt bế tròn • Chống thấm nước 100%", img: "TEM_TACH_NEN/4.png", cat: "tra-sua" },
+      { name: "Yến Kim Phúc – Thượng Hạng", style: "Cắt bế tròn • Ép kim đỏ ruby quý phái", img: "TEM_TACH_NEN/5.png", cat: "qua-bieu" },
+      { name: "Bếp Trà Mây MiuMiu", style: "Cắt bế tròn • Decal sữa ngọt ngào", img: "TEM_TACH_NEN/6.png", cat: "tra-sua" },
+      { name: "Kem Body Dạ Lan Beauty", style: "Cắt bế tròn • Decal nền đen ép nhũ vàng", img: "TEM_TACH_NEN/7.png", cat: "my-pham" },
+      { name: "Mộc Nâu Coffee Scrub", style: "Cắt bế tròn • Decal Kraft vintage cà phê", img: "TEM_TACH_NEN/8.png", cat: "my-pham" },
+      { name: "Tem Nông Sản Sầu Riêng", style: "Cắt bế tròn • Decal nhựa chống dầu mỡ", img: "TEM_TACH_NEN/9.png", cat: "qua-bieu" },
+      { name: "Mật Ong Kiên Nông Cao Bạch Hoa", style: "Cắt bế tròn • Decal vàng ấm dán hũ thủy tinh", img: "TEM_TACH_NEN/10.png", cat: "qua-bieu" },
+      { name: "Tiệm Bánh Gấu Hồng Ngự Bakery", style: "Cắt bế tròn • Decal sữa dán hộp bánh", img: "TEM_TACH_NEN/11.png", cat: "an-vat" },
+      { name: "Lunaria Milk Tea Premium", style: "Cắt bế tròn • Decal trong suốt sang chảnh", img: "TEM_TACH_NEN/12.png", cat: "tra-sua" },
+      { name: "Trà Sữa Nhà Làm Kori Milk Tea", style: "Cắt bế tròn • Decal sữa kháng nước đá", img: "TEM_TACH_NEN/13.png", cat: "tra-sua" },
+      { name: "Cà Phê Mộc Nguyên Chất", style: "Cắt bế tròn • Tông vàng nâu cổ điển", img: "TEM_TACH_NEN/14.png", cat: "tra-sua" },
+      { name: "Tiệm Bánh Kim Ngân", style: "Cắt bế tròn • Decal ép kim thanh lịch", img: "TEM_TACH_NEN/15.png", cat: "an-vat" }
     ];
+
 
     // Nạp sẵn toàn bộ ảnh vào bộ nhớ đệm
     stickerList.forEach(item => {
@@ -7464,13 +8038,15 @@ body.phone-mode .visitor-counter {
 
     // Tạo các chấm chỉ số tương ứng số lượng mẫu
     const dotsContainer = document.getElementById('dotsContainer');
-    stickerList.forEach((_, i) => {
-      const btn = document.createElement('button');
-      btn.className = 'dot-btn' + (i === 0 ? ' active' : '');
-      btn.title = `Mẫu ${i + 1}: ${stickerList[i].name}`;
-      btn.onclick = () => jumpToItem(i);
-      dotsContainer.appendChild(btn);
-    });
+    if (dotsContainer) {
+      stickerList.forEach((_, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'dot-btn' + (i === 0 ? ' active' : '');
+        btn.title = `Mẫu ${i + 1}: ${stickerList[i].name}`;
+        btn.onclick = () => jumpToItem(i);
+        dotsContainer.appendChild(btn);
+      });
+    }
 
     const cardElements = [
       document.getElementById('cardEl0'),
@@ -7484,7 +8060,7 @@ body.phone-mode .visitor-counter {
     let cardItemIndices = [stickerList.length - 1, 0, 1];
     let currentCenterItem = 0; // Bắt đầu ở mẫu đầu tiên (Bánh Quy Tết)
 
-    let cycleDuration = 3500;
+    let cycleDuration = 2500;
     let timerStartTime = Date.now();
     let isPaused = false;
     let isMoving = false;
@@ -7510,7 +8086,11 @@ body.phone-mode .visitor-counter {
         el.className = 'fan-card ' + slotClasses[cardSlots[i]];
       });
 
-      spotlightText.innerText = `Đang nổi bật: ${stickerList[currentCenterItem].name}`;
+      if (spotlightText) spotlightText.innerText = `Đang nổi bật: ${stickerList[currentCenterItem].name}`;
+      const elSub = document.getElementById('spotlightSub');
+      if (elSub && stickerList[currentCenterItem]) {
+        elSub.innerText = stickerList[currentCenterItem].style;
+      }
 
       // Cập nhật chấm active
       document.querySelectorAll('.dot-btn').forEach((d, i) => {
@@ -7553,7 +8133,7 @@ body.phone-mode .visitor-counter {
       setTimeout(() => {
         isMoving = false;
         timerStartTime = Date.now();
-      }, 850);
+      }, 380);
     }
 
     // HÀM ĐẢO VÒNG 3D QUAY LẠI (PREV)
@@ -7585,7 +8165,7 @@ body.phone-mode .visitor-counter {
       setTimeout(() => {
         isMoving = false;
         timerStartTime = Date.now();
-      }, 850);
+      }, 380);
     }
 
     function nextStep() { rotateForward(); }
@@ -7639,11 +8219,15 @@ body.phone-mode .visitor-counter {
     }
 
     function updateLoop() {
-      if (!isPaused && !isMoving) {
+      // Trên điện thoại (phone-mode hoặc mobile screen), tắt tự động chạy để người dùng hoàn toàn làm chủ vuốt tay
+      const isMobileDevice = document.body.classList.contains('phone-mode') || window.innerWidth <= 768;
+      if (!isPaused && !isMoving && !isMobileDevice) {
         const elapsed = Date.now() - timerStartTime;
-        const percent = Math.min((elapsed / cycleDuration) * 100, 100);
-        timerBar.style.width = percent + '%';
-
+        const timerBarEl = document.getElementById('timerBar');
+        if (timerBarEl) {
+          const percent = Math.min((elapsed / cycleDuration) * 100, 100);
+          timerBarEl.style.width = percent + '%';
+        }
         if (elapsed >= cycleDuration) {
           rotateForward();
         }
@@ -7691,10 +8275,16 @@ body.phone-mode .visitor-counter {
       updateReelWidth(360);
     }
 
-    // Mặc định mở ngay giao diện giả lập kích thước thật cầm tay (62%)
-    document.addEventListener('DOMContentLoaded', function() {
-      setPhoneScale(0.62);
-    });
+    // BẢN CHÍNH THỨC: TỰ ĐỘNG NHẬN DIỆN DI ĐỘNG & MÁY TÍNH
+    function checkDeviceView() {
+      if (window.innerWidth <= 768) {
+        document.body.classList.add('phone-mode');
+      } else {
+        document.body.classList.remove('phone-mode');
+      }
+    }
+    checkDeviceView();
+    window.addEventListener('resize', checkDeviceView);
 
     // ========================================================
     // LOGIC TỰ TÍNH GIÁ ONLINE CHUẨN XÁC 100% THEO THUẬT TOÁN
@@ -8471,73 +9061,409 @@ function toggleFaq(elem) {
 </script>
 
 
-  <script>
-    // TỰ ĐỘNG NHẬN DIỆN DI ĐỘNG & KÍCH HOẠT phone-mode CHO TRANG CHÍNH THỨC
-    function autoDetectMobileMode() {
-      const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      if (isMobile) {
-        document.body.classList.add('phone-mode');
-        if (typeof updateReelWidth === 'function') updateReelWidth(300);
-      } else {
-        document.body.classList.remove('phone-mode');
-        if (typeof updateReelWidth === 'function') updateReelWidth(360);
+  <!-- THANH GHIM ĐÁY MÀN HÌNH (STICKY GLASS BAR) CHO MOBILE -->
+  <div class="mobile-sticky-bar" id="mobileStickyBar">
+    <div class="sticky-bar-info">
+      <span class="sticky-bar-label" id="stickySpecsLabel">500 con • 5x5cm</span>
+      <span class="sticky-bar-price" id="stickyPriceText">180.000 đ</span>
+    </div>
+    <a href="https://zalo.me/0937650121" target="_blank" class="sticky-btn-zalo" id="stickyZaloAction">
+      <span>Zalo 1 Chạm 💬</span>
+    </a>
+  </div>
+
+
+<script>
+// BIẾN TRẠNG THÁI TOUCH CALC CHO MOBILE
+var currentTouchSize = 50; // mm
+var currentTouchQty = 500;
+var currentTouchShape = 'round';
+var currentTouchMaterial = 'paper';
+
+function onTouchSizeChange(val) {
+  currentTouchSize = parseInt(val, 10);
+  document.getElementById('touchSizeDisplay').textContent = (currentTouchSize / 10).toFixed(1) + ' cm (' + currentTouchSize + ' mm)';
+  
+  // Scale con tem trực quan
+  var preview = document.getElementById('touchStickerPreview');
+  var baseSize = 60 + (currentTouchSize - 20) * (60 / 100); // 60px to 120px
+  if (preview) {
+    if (currentTouchShape === 'round' || currentTouchShape === 'square') {
+      preview.style.width = baseSize + 'px';
+      preview.style.height = baseSize + 'px';
+    } else if (currentTouchShape === 'rect') {
+      preview.style.width = (baseSize * 1.3) + 'px';
+      preview.style.height = (baseSize * 0.75) + 'px';
+    } else if (currentTouchShape === 'oval') {
+      preview.style.width = (baseSize * 1.25) + 'px';
+      preview.style.height = (baseSize * 0.8) + 'px';
+    }
+  }
+
+  // Update badge
+  var shapeNames = { round: 'Tròn', square: 'Vuông', rect: 'Chữ Nhật', oval: 'Elip', diecut: 'Bế Tự Do' };
+  document.getElementById('touchDimBadge').textContent = currentTouchSize + ' x ' + currentTouchSize + ' mm (' + (currentTouchSize/10).toFixed(1) + 'cm) • Hình ' + shapeNames[currentTouchShape];
+
+  // Sync to original mobile inputs
+  var inpW = document.getElementById('inputWidthMobile');
+  var inpH = document.getElementById('inputHeightMobile');
+  if (inpW) inpW.value = currentTouchSize;
+  if (inpH) inpH.value = currentTouchSize;
+
+  recalcTouchPrice();
+}
+
+function setTouchSize(val) {
+  var slider = document.getElementById('touchSizeSlider');
+  if (slider) slider.value = val;
+  onTouchSizeChange(val);
+
+  // Update active preset button
+  document.querySelectorAll('.touch-slider-group:nth-child(2) .touch-preset-btn').forEach(function(btn) {
+    btn.classList.remove('is-active');
+  });
+  if (event && event.target) event.target.classList.add('is-active');
+}
+
+function onTouchQtyChange(val) {
+  currentTouchQty = parseInt(val, 10);
+  var savePercent = '';
+  if (currentTouchQty >= 1000) savePercent = ' (Tiết kiệm 50% 🏆)';
+  else if (currentTouchQty >= 500) savePercent = ' (Tiết kiệm 35% 🔥)';
+  else if (currentTouchQty >= 200) savePercent = ' (Tiết kiệm 20%)';
+  document.getElementById('touchQtyDisplay').textContent = currentTouchQty.toLocaleString('vi-VN') + ' con' + savePercent;
+
+  var inpQty = document.getElementById('inputQtyMobile');
+  if (inpQty) inpQty.value = currentTouchQty;
+
+  recalcTouchPrice();
+}
+
+function setTouchQty(val) {
+  var slider = document.getElementById('touchQtySlider');
+  if (slider) slider.value = val;
+  onTouchQtyChange(val);
+
+  document.querySelectorAll('.touch-slider-group:nth-child(3) .touch-preset-btn').forEach(function(btn) {
+    btn.classList.remove('is-active');
+  });
+  if (event && event.target) event.target.classList.add('is-active');
+}
+
+function selectTouchShape(shape) {
+  currentTouchShape = shape;
+  document.querySelectorAll('.touch-shape-btn').forEach(function(btn) { btn.classList.remove('is-active'); });
+  var activeBtn = document.getElementById('shape' + shape.charAt(0).toUpperCase() + shape.slice(1));
+  if (activeBtn) activeBtn.classList.add('is-active');
+
+  var preview = document.getElementById('touchStickerPreview');
+  if (preview) {
+    if (shape === 'round') {
+      preview.style.borderRadius = '50%';
+    } else if (shape === 'square') {
+      preview.style.borderRadius = '12px';
+    } else if (shape === 'rect') {
+      preview.style.borderRadius = '12px';
+    } else if (shape === 'oval') {
+      preview.style.borderRadius = '50% / 35%';
+    } else if (shape === 'diecut') {
+      preview.style.borderRadius = '24px 8px 24px 8px';
+    }
+  }
+
+  onTouchSizeChange(currentTouchSize);
+}
+
+function recalcTouchPrice() {
+  // Lấy đơn giá chuẩn theo diện tích và số lượng
+  var areaCm2 = (currentTouchSize / 10) * (currentTouchSize / 10);
+  var baseRate = 0.08; // đ/mm2
+  var unitPrice = Math.max(60, Math.round((areaCm2 * 18 * (1000 / (currentTouchQty + 400))) / 10) * 10);
+  var totalPrice = unitPrice * currentTouchQty;
+
+  // Format hiển thị
+  var strTotal = totalPrice.toLocaleString('vi-VN') + ' đ';
+  var strUnit = '~' + unitPrice.toLocaleString('vi-VN') + ' đ / con';
+  var strSpecs = currentTouchQty.toLocaleString('vi-VN') + ' con • ' + (currentTouchSize/10).toFixed(0) + 'cm';
+
+  var elTotal = document.getElementById('touchTotalPrice');
+  var elUnit = document.getElementById('touchUnitPrice');
+  var elStickyPrice = document.getElementById('stickyPriceText');
+  var elStickySpecs = document.getElementById('stickySpecsLabel');
+
+  if (elTotal) elTotal.textContent = strTotal;
+  if (elUnit) elUnit.textContent = strUnit;
+  if (elStickyPrice) elStickyPrice.textContent = strTotal;
+  if (elStickySpecs) elStickySpecs.textContent = strSpecs;
+
+  // Cập nhật link Zalo có kèm thông tin tem đã chọn
+  var zaloMsg = encodeURIComponent("Chào Sticker Gia Minh, mình muốn đặt in tem: Kích thước " + currentTouchSize + "mm (" + (currentTouchSize/10).toFixed(0) + "cm), Số lượng " + currentTouchQty + " con, hình " + currentTouchShape + ". Báo giá khoảng " + strTotal + ". Tư vấn giúp mình nhé!");
+  var zaloLink = "https://zalo.me/0937650121?text=" + zaloMsg;
+  var btnZalo = document.getElementById('touchZaloBtn');
+  var btnStickyZalo = document.getElementById('stickyZaloAction');
+  if (btnZalo) btnZalo.href = zaloLink;
+  if (btnStickyZalo) btnStickyZalo.href = zaloLink;
+}
+
+function copyTouchPriceQuote() {
+  var strTotal = document.getElementById('touchTotalPrice').textContent;
+  var text = "BÁO GIÁ STICKER GIA MINH:\n- Kích thước: " + currentTouchSize + " x " + currentTouchSize + " mm (" + (currentTouchSize/10).toFixed(0) + "cm)\n- Số lượng: " + currentTouchQty + " con\n- Tạm tính: " + strTotal + "\n- Hotline/Zalo: 0937.650.121\n- Website: https://stickergiaminh.com";
+  navigator.clipboard.writeText(text).then(function() {
+    alert("Đã sao chép báo giá vào bộ nhớ tạm!");
+  });
+}
+
+// Khởi chạy khi tải trang
+document.addEventListener('DOMContentLoaded', function() {
+  recalcTouchPrice();
+});
+</script>
+
+
+<script>
+// TƯƠNG TÁC VẬT LÝ XÚC GIÁC 60/120 FPS THỜI GIAN THỰC (HARDWARE-ACCELERATED TACTILE DRAG)
+(function() {
+  var deck = document.getElementById('cardsDeck');
+  if (!deck) return;
+
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var touchStartTime = 0;
+  var currentDiffX = 0;
+  var currentDiffY = 0;
+  var isDragging = false;
+  var rafId = null;
+
+  var activeCenterEl = null;
+  var activeLeftEl = null;
+  var activeRightEl = null;
+
+  function getCards() {
+    var cIdx = (typeof cardSlots !== 'undefined') ? cardSlots.indexOf(1) : 1;
+    var lIdx = (typeof cardSlots !== 'undefined') ? cardSlots.indexOf(0) : 0;
+    var rIdx = (typeof cardSlots !== 'undefined') ? cardSlots.indexOf(2) : 2;
+    return {
+      center: (typeof cardElements !== 'undefined' && cardElements[cIdx]) ? cardElements[cIdx] : document.getElementById('cardEl1'),
+      left: (typeof cardElements !== 'undefined' && cardElements[lIdx]) ? cardElements[lIdx] : document.getElementById('cardEl0'),
+      right: (typeof cardElements !== 'undefined' && cardElements[rIdx]) ? cardElements[rIdx] : document.getElementById('cardEl2')
+    };
+  }
+
+  function handleTouchStart(e) {
+    if (e.touches && e.touches.length !== 1) return;
+    if (typeof isMoving !== 'undefined' && isMoving) return;
+
+    var cards = getCards();
+    activeCenterEl = cards.center;
+    activeLeftEl = cards.left;
+    activeRightEl = cards.right;
+    if (!activeCenterEl) return;
+
+    var touch = e.touches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+    touchStartTime = Date.now();
+    currentDiffX = 0;
+    currentDiffY = 0;
+    isDragging = true;
+
+    // Bật chế độ kéo: Tắt transition tức thì, hạ tải GPU
+    deck.classList.add('is-dragging');
+
+    activeCenterEl.style.setProperty('transition', 'none', 'important');
+    if (activeLeftEl) activeLeftEl.style.setProperty('transition', 'none', 'important');
+    if (activeRightEl) activeRightEl.style.setProperty('transition', 'none', 'important');
+  }
+
+  function renderPhysics() {
+    if (!isDragging || !activeCenterEl) return;
+
+    var progress = Math.max(-1, Math.min(1, currentDiffX / 160));
+
+    // 1. CON TEM GIỮA BÁM DÍNH THEO ĐẦU NGÓN TAY 1:1
+    var tx = currentDiffX;
+    var tz = 45 - Math.abs(currentDiffX) * 0.25;
+    var rot = currentDiffX * 0.08;
+    var rotY = currentDiffX * -0.1;
+    var sc = 1.08 - Math.abs(progress) * 0.12;
+
+    activeCenterEl.style.setProperty('transform', 'translateX(' + tx + 'px) translateZ(' + tz + 'px) rotate(' + rot + 'deg) rotateY(' + rotY + 'deg) scale(' + sc + ')', 'important');
+    activeCenterEl.style.setProperty('z-index', '20', 'important');
+
+    // 2. CON TEM KẾ TIẾP ĐỒNG THỜI TRỒI LÊN THEO TAY KÉO
+    if (currentDiffX < 0) {
+      // Kéo sang trái -> Tem bên phải (chuẩn bị lên trước) trồi dần lên tâm điểm
+      var rProg = Math.abs(progress);
+      var rtx = 95 - rProg * 95;
+      var rtz = -80 + rProg * 125;
+      var rRot = -35 + rProg * 35;
+      var rSc = 0.8 + rProg * 0.28;
+      var rOp = 0.5 + rProg * 0.5;
+      if (activeRightEl) {
+        activeRightEl.style.setProperty('transform', 'translateX(' + rtx + 'px) translateZ(' + rtz + 'px) rotateY(' + rRot + 'deg) scale(' + rSc + ')', 'important');
+        activeRightEl.style.setProperty('opacity', rOp, 'important');
+        activeRightEl.style.setProperty('z-index', '10', 'important');
+      }
+
+      // Tem bên trái chìm sâu hơn ra phía sau
+      var lProg = Math.abs(progress);
+      var ltx = -95 - lProg * 35;
+      var ltz = -80 - lProg * 40;
+      var lRot = 35 + lProg * 10;
+      var lSc = 0.8 - lProg * 0.1;
+      var lOp = Math.max(0.15, 0.5 - lProg * 0.35);
+      if (activeLeftEl) {
+        activeLeftEl.style.setProperty('transform', 'translateX(' + ltx + 'px) translateZ(' + ltz + 'px) rotateY(' + lRot + 'deg) scale(' + lSc + ')', 'important');
+        activeLeftEl.style.setProperty('opacity', lOp, 'important');
+        activeLeftEl.style.setProperty('z-index', '1', 'important');
+      }
+    } else if (currentDiffX > 0) {
+      // Kéo sang phải -> Tem bên trái (chuẩn bị lên trước) trồi dần lên tâm điểm
+      var lProg = Math.abs(progress);
+      var ltx = -95 + lProg * 95;
+      var ltz = -80 + lProg * 125;
+      var lRot = 35 - lProg * 35;
+      var lSc = 0.8 + lProg * 0.28;
+      var lOp = 0.5 + lProg * 0.5;
+      if (activeLeftEl) {
+        activeLeftEl.style.setProperty('transform', 'translateX(' + ltx + 'px) translateZ(' + ltz + 'px) rotateY(' + lRot + 'deg) scale(' + lSc + ')', 'important');
+        activeLeftEl.style.setProperty('opacity', lOp, 'important');
+        activeLeftEl.style.setProperty('z-index', '10', 'important');
+      }
+
+      // Tem bên phải chìm sâu hơn ra phía sau
+      var rProg = Math.abs(progress);
+      var rtx = 95 + rProg * 35;
+      var rtz = -80 - rProg * 40;
+      var rRot = -35 - rProg * 10;
+      var rSc = 0.8 - rProg * 0.1;
+      var rOp = Math.max(0.15, 0.5 - rProg * 0.35);
+      if (activeRightEl) {
+        activeRightEl.style.setProperty('transform', 'translateX(' + rtx + 'px) translateZ(' + rtz + 'px) rotateY(' + rRot + 'deg) scale(' + rSc + ')', 'important');
+        activeRightEl.style.setProperty('opacity', rOp, 'important');
+        activeRightEl.style.setProperty('z-index', '1', 'important');
       }
     }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', autoDetectMobileMode);
-    } else {
-      autoDetectMobileMode();
+
+    rafId = null;
+  }
+
+  function handleTouchMove(e) {
+    if (!isDragging || !activeCenterEl) return;
+    if (e.touches && e.touches.length !== 1) return;
+
+    var touch = e.touches[0];
+    currentDiffX = touch.clientX - touchStartX;
+    currentDiffY = touch.clientY - touchStartY;
+
+    // Chặn hoàn toàn trình duyệt cướp quyền cuộn dọc khi đang tương tác tem
+    if (e.cancelable) e.preventDefault();
+
+    // Tối ưu hóa GPU: Chỉ render đúng nhịp vsync 60/120 FPS
+    if (!rafId) {
+      rafId = requestAnimationFrame(renderPhysics);
     }
-    window.addEventListener('resize', autoDetectMobileMode);
-  </script>
-
-
-<!-- REAL GA4 VISITOR COUNTER SYNC -->
-<script>
-(function() {
-  function syncVisitorCounter() {
-    fetch('/api/counter')
-      .then(function(res) {
-        if (!res.ok) throw new Error('API status ' + res.status);
-        return res.json();
-      })
-      .then(function(data) {
-        if (!data) return;
-        var elOnline = document.getElementById('counterOnline');
-        var elToday = document.getElementById('counterToday');
-        var elMonth = document.getElementById('counterMonth');
-        var elTotal = document.getElementById('counterTotal');
-        if (elOnline && typeof data.online !== 'undefined') elOnline.textContent = data.online;
-        if (elToday && typeof data.today !== 'undefined') elToday.textContent = Number(data.today).toLocaleString('vi-VN');
-        if (elMonth && typeof data.month !== 'undefined') elMonth.textContent = Number(data.month).toLocaleString('vi-VN');
-        if (elTotal && typeof data.total !== 'undefined') elTotal.textContent = Number(data.total).toLocaleString('vi-VN');
-      })
-      .catch(function(err) {
-        fetch('/stats.json')
-          .then(function(r) { return r.json(); })
-          .then(function(d) {
-            var elOnline = document.getElementById('counterOnline');
-            var elToday = document.getElementById('counterToday');
-            var elMonth = document.getElementById('counterMonth');
-            var elTotal = document.getElementById('counterTotal');
-            if (elOnline && d.online) elOnline.textContent = d.online;
-            if (elToday && d.today) elToday.textContent = Number(d.today).toLocaleString('vi-VN');
-            if (elMonth && d.month) elMonth.textContent = Number(d.month).toLocaleString('vi-VN');
-            if (elTotal && d.total) elTotal.textContent = Number(d.total).toLocaleString('vi-VN');
-          })
-          .catch(function() {});
-      });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', syncVisitorCounter);
-  } else {
-    syncVisitorCounter();
+  function handleTouchEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+
+    deck.classList.remove('is-dragging');
+    if (!activeCenterEl) return;
+
+    var diffX = currentDiffX;
+    var diffY = currentDiffY;
+    var elapsed = Math.max(1, Date.now() - touchStartTime);
+    var velocityX = Math.abs(diffX) / elapsed;
+
+    // Quán tính lò xo mượt mà
+    var spring = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease';
+    activeCenterEl.style.setProperty('transition', spring, 'important');
+    if (activeLeftEl) activeLeftEl.style.setProperty('transition', spring, 'important');
+    if (activeRightEl) activeRightEl.style.setProperty('transition', spring, 'important');
+
+    var shouldRotate = Math.abs(diffX) > 35 || (Math.abs(diffX) > 18 && velocityX > 0.35);
+
+    if (shouldRotate) {
+      if (diffX < 0) {
+        if (typeof rotateForward === 'function') rotateForward();
+      } else {
+        if (typeof rotateBackward === 'function') rotateBackward();
+      }
+    } else if (Math.abs(diffX) < 10 && Math.abs(diffY) < 10) {
+      // Tap nhẹ -> Mở HD zoom modal
+      var centerIdx = (typeof currentCenterItem !== 'undefined') ? currentCenterItem : 0;
+      if (typeof openTemplateModal === 'function' && typeof stickerList !== 'undefined') {
+        var item = stickerList[centerIdx];
+        if (item) {
+          openTemplateModal({
+            title: item.name,
+            material: item.style,
+            img: item.img,
+            shape: 'Tròn',
+            badge: 'Mockup Thực Tế'
+          });
+        }
+      }
+    } else {
+      // Đàn hồi bật về tâm điểm
+      if (typeof applySlots === 'function') applySlots();
+    }
+
+    // Xóa inline transform để class CSS tiếp quản
+    activeCenterEl.style.removeProperty('transform');
+    activeCenterEl.style.removeProperty('z-index');
+    activeCenterEl.style.removeProperty('opacity');
+    if (activeLeftEl) {
+      activeLeftEl.style.removeProperty('transform');
+      activeLeftEl.style.removeProperty('z-index');
+      activeLeftEl.style.removeProperty('opacity');
+    }
+    if (activeRightEl) {
+      activeRightEl.style.removeProperty('transform');
+      activeRightEl.style.removeProperty('z-index');
+      activeRightEl.style.removeProperty('opacity');
+    }
+
+    setTimeout(function() {
+      if (activeCenterEl) activeCenterEl.style.removeProperty('transition');
+      if (activeLeftEl) activeLeftEl.style.removeProperty('transition');
+      if (activeRightEl) activeRightEl.style.removeProperty('transition');
+    }, 420);
   }
 
-  // Auto refresh every 45s
-  setInterval(syncVisitorCounter, 45000);
+  deck.addEventListener('touchstart', handleTouchStart, { passive: true });
+  deck.addEventListener('touchmove', handleTouchMove, { passive: false });
+  deck.addEventListener('touchend', handleTouchEnd, { passive: true });
+  deck.addEventListener('touchcancel', handleTouchEnd, { passive: true });
 })();
+</script>
+
+
+<script>
+// OPTION 2: LỌC MẪU THEO NGÀNH HÀNG & 3D COVERFLOW CONTROLS
+var catMap = {
+  'all': 0,        // Mẫu 1: Mộc Vân Luxury
+  'my-pham': 0,    // Mẫu 1: Kem Body Mộc Vân Luxury
+  'an-vat': 1,     // Mẫu 2: Bếp Mèo Miu
+  'tra-sua': 3,    // Mẫu 4: Trà Sữa Miu Miu
+  'qua-bieu': 4    // Mẫu 5: Yến Kim Phúc Thượng Hạng
+};
+
+function filterByCat(cat, ev) {
+  document.querySelectorAll('.opt2-cat-pill').forEach(function(p) { p.classList.remove('is-active'); });
+  if (ev && ev.target) ev.target.classList.add('is-active');
+
+  var targetIdx = (catMap[cat] !== undefined) ? catMap[cat] : 0;
+  if (typeof jumpToItem === 'function') {
+    jumpToItem(targetIdx);
+  }
+}
 </script>
 
 </body>
