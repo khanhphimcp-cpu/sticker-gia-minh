@@ -5740,6 +5740,343 @@ body.phone-mode .visitor-counter {
   display: inline-block;
 }
 
+
+    /* ======================================================== */
+    /* NÂNG CẤP TRẢI NGHIỆM MOBILE: STORIES, TOUCH CALC & STICKY */
+    /* ======================================================== */
+    
+    /* 1. THANH STORIES KHÁM PHÁ NHANH TRÊN MOBILE */
+    .mobile-stories-bar {
+      display: none;
+      width: 100%;
+      padding: 10px 12px 14px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .mobile-stories-bar::-webkit-scrollbar {
+      display: none;
+    }
+    .mobile-stories-track {
+      display: inline-flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .mobile-story-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      width: 66px;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .mobile-story-item:active {
+      transform: scale(0.92);
+    }
+    .mobile-story-ring {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(135deg, #ec4899, #a855f7, #38bdf8);
+      position: relative;
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.35);
+    }
+    .mobile-story-ring.active-story {
+      box-shadow: 0 0 0 2px #38bdf8, 0 4px 14px rgba(56, 189, 248, 0.5);
+    }
+    .mobile-story-ring img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 2px solid #0b0717;
+      background: #1e1b2e;
+    }
+    .mobile-story-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #cbd5e1;
+      text-align: center;
+      line-height: 1.15;
+      white-space: nowrap;
+    }
+
+    /* 2. KHUNG TRẢI NGHIỆM CON TEM TRỰC QUAN (TOUCH STAGE) */
+    .mobile-touch-calc-box {
+      display: none;
+      flex-direction: column;
+      background: linear-gradient(180deg, rgba(30, 27, 75, 0.7) 0%, rgba(15, 23, 42, 0.85) 100%);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      border-radius: 20px;
+      padding: 18px 14px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(12px);
+    }
+    .touch-stage-canvas {
+      width: 100%;
+      height: 175px;
+      background: radial-gradient(circle at center, rgba(168, 85, 247, 0.22) 0%, rgba(15, 23, 42, 0.7) 70%);
+      border: 1px dashed rgba(168, 85, 247, 0.3);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .touch-sticker-preview {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.5), 0 0 0 3px rgba(255,255,255,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      text-align: center;
+      transition: width 0.12s ease-out, height 0.12s ease-out, border-radius 0.2s ease, background 0.3s ease;
+      position: relative;
+    }
+    .touch-sticker-preview img {
+      width: 42px;
+      height: auto;
+      object-fit: contain;
+      margin-bottom: 3px;
+    }
+    .touch-sticker-preview span {
+      font-size: 9.5px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.1;
+    }
+    .touch-dimension-badge {
+      margin-top: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      color: #38bdf8;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 999px;
+    }
+
+    /* 3. THANH TRƯỢT KÍCH THƯỚC & SỐ LƯỢNG */
+    .touch-slider-group {
+      margin-bottom: 16px;
+    }
+    .touch-slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .touch-slider-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+    .touch-slider-val {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #facc15;
+    }
+    .touch-range-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.15);
+      outline: none;
+      margin: 6px 0;
+    }
+    .touch-range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a855f7, #38bdf8);
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(56, 189, 248, 0.6);
+      border: 2px solid #ffffff;
+      transition: transform 0.1s;
+    }
+    .touch-range-slider::-webkit-slider-thumb:active {
+      transform: scale(1.2);
+    }
+    .touch-preset-pills {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .touch-preset-pills::-webkit-scrollbar {
+      display: none;
+    }
+    .touch-preset-btn {
+      flex: 1;
+      min-width: 52px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #94a3b8;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 4px;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .touch-preset-btn.is-active {
+      background: rgba(168, 85, 247, 0.3);
+      border-color: #c084fc;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(168, 85, 247, 0.4);
+    }
+
+    /* 4. CHỌN HÌNH DÁNG 1 CHẠM */
+    .touch-shapes-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .touch-shape-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 8px 2px;
+      color: #94a3b8;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .touch-shape-btn.is-active {
+      background: rgba(56, 189, 248, 0.18);
+      border-color: #38bdf8;
+      color: #38bdf8;
+      font-weight: 700;
+    }
+    .touch-shape-btn span {
+      font-size: 10px;
+    }
+
+    /* 5. KHỐI GIÁ NỔI BẬT */
+    .touch-price-box {
+      background: linear-gradient(135deg, rgba(234, 179, 8, 0.15) 0%, rgba(168, 85, 247, 0.18) 100%);
+      border: 1px solid rgba(234, 179, 8, 0.4);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .touch-price-label {
+      font-size: 11.5px;
+      color: #cbd5e1;
+    }
+    .touch-price-val {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fef08a;
+      letter-spacing: -0.5px;
+    }
+    .touch-unit-val {
+      font-size: 11px;
+      color: #c084fc;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* 6. THANH GHIM ĐÁY MÀN HÌNH */
+    .mobile-sticky-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: rgba(11, 7, 23, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(168, 85, 247, 0.35);
+      padding: 10px 14px;
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.7);
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .sticky-bar-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .sticky-bar-label {
+      font-size: 10.5px;
+      color: #94a3b8;
+    }
+    .sticky-bar-price {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fef08a;
+    }
+    .sticky-btn-zalo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #0284c7, #0068ff);
+      color: #ffffff !important;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 9px 16px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+      white-space: nowrap;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .sticky-btn-zalo:active {
+      transform: scale(0.96);
+    }
+
+    /* HIỂN THỊ KHI Ở CHẾ ĐỘ MOBILE HOẶC PHONE-MODE */
+    body.phone-mode .mobile-stories-bar,
+    body.phone-mode .mobile-touch-calc-box,
+    body.phone-mode .mobile-sticky-bar {
+      display: flex !important;
+    }
+    @media (max-width: 768px) {
+      .mobile-stories-bar,
+      .mobile-touch-calc-box,
+      .mobile-sticky-bar {
+        display: flex !important;
+      }
+    }
+
 </style>
 </head>
 <body class="phone-mode">
@@ -5825,6 +6162,49 @@ body.phone-mode .visitor-counter {
 
   <!-- BỐ CỤC CHÍNH (HERO 2 CỘT) -->
   <div class="hero-container">
+
+  <!-- THANH STORIES KHÁM PHÁ NHANH TRÊN MOBILE -->
+  <div class="mobile-stories-bar">
+    <div class="mobile-stories-track">
+      <a href="#chat-lieu" class="mobile-story-item">
+        <div class="mobile-story-ring active-story">
+          <img src="assets/products/tem-tra-sua-1.jpg" alt="Chống Nước">
+        </div>
+        <span class="mobile-story-label">Chống Nước 💧</span>
+      </a>
+      <a href="#chat-lieu" class="mobile-story-item">
+        <div class="mobile-story-ring">
+          <img src="HINH XOAY/15_nhan_dán_yến_kim_phúc.png" alt="7 Màu Ánh Kim">
+        </div>
+        <span class="mobile-story-label">7 Màu ✨</span>
+      </a>
+      <a href="#chat-lieu" class="mobile-story-item">
+        <div class="mobile-story-ring">
+          <img src="assets/products/tem-coffee-an-nhien.jpg" alt="Trong Suốt">
+        </div>
+        <span class="mobile-story-label">Trong Suốt 🍃</span>
+      </a>
+      <a href="#chat-lieu" class="mobile-story-item">
+        <div class="mobile-story-ring">
+          <img src="assets/products/tem-coffee-moc.jpg" alt="Giấy Kraft">
+        </div>
+        <span class="mobile-story-label">Giấy Kraft ☕</span>
+      </a>
+      <a href="#kho-mau" class="mobile-story-item">
+        <div class="mobile-story-ring">
+          <img src="assets/products/tem-an-vat-tui-zip.jpg" alt="Đồ Ăn Vặt">
+        </div>
+        <span class="mobile-story-label">Đồ Ăn Vặt 🍪</span>
+      </a>
+      <a href="#quy-trinh" class="mobile-story-item">
+        <div class="mobile-story-ring">
+          <img src="assets/products/tem-thuc-te-um-can-canh.jpg" alt="Cắt Bế Mọi Hình">
+        </div>
+        <span class="mobile-story-label">Cắt Mọi Hình ✂️</span>
+      </a>
+    </div>
+  </div>
+
 
     <!-- CỘT TRÁI: ĐẦY ĐỦ SLOGAN & NỘI DUNG GỐC CỦA STICKER GIA MINH -->
     <div class="hero-content">
@@ -6106,6 +6486,102 @@ body.phone-mode .visitor-counter {
     <!-- BẢN DÀNH RIÊNG CHO ĐIỆN THOẠI (TỐI ƯU CỰC GỌN)        -->
     <!-- ===================================================== -->
     <div class="calc-container mobile-only-calc">
+
+    <!-- BỘ TÍNH GIÁ TRỰC QUAN 1 CHẠM CHO MOBILE (TOUCH CALC) -->
+    <div class="mobile-touch-calc-box">
+      <!-- KHUNG PREVIEW CON TEM CO GIÃN THEO TAY -->
+      <div class="touch-stage-canvas">
+        <div class="touch-sticker-preview" id="touchStickerPreview">
+          <img src="logo-gm-emblem.png" alt="Logo">
+          <span id="touchStickerText">Sticker Gia Minh</span>
+        </div>
+        <div class="touch-dimension-badge">
+          <span id="touchDimBadge">50 x 50 mm (5cm) • Hình Tròn</span>
+        </div>
+      </div>
+
+      <!-- 1. CHỌN HÌNH DÁNG -->
+      <div class="touch-shapes-row">
+        <div class="touch-shape-btn is-active" id="shapeRound" onclick="selectTouchShape('round')">
+          <span style="font-size: 16px;">⚪</span>
+          <span>Tròn</span>
+        </div>
+        <div class="touch-shape-btn" id="shapeSquare" onclick="selectTouchShape('square')">
+          <span style="font-size: 16px;">⬜</span>
+          <span>Vuông</span>
+        </div>
+        <div class="touch-shape-btn" id="shapeRect" onclick="selectTouchShape('rect')">
+          <span style="font-size: 16px;">▭</span>
+          <span>Chữ Nhật</span>
+        </div>
+        <div class="touch-shape-btn" id="shapeOval" onclick="selectTouchShape('oval')">
+          <span style="font-size: 16px;">⬭</span>
+          <span>Elip</span>
+        </div>
+        <div class="touch-shape-btn" id="shapeDiecut" onclick="selectTouchShape('diecut')">
+          <span style="font-size: 16px;">✂️</span>
+          <span>Bế Tự Do</span>
+        </div>
+      </div>
+
+      <!-- 2. THANH TRƯỢT KÍCH THƯỚC -->
+      <div class="touch-slider-group">
+        <div class="touch-slider-header">
+          <span class="touch-slider-title">Kích thước tem:</span>
+          <span class="touch-slider-val" id="touchSizeDisplay">5.0 cm (50 mm)</span>
+        </div>
+        <input type="range" class="touch-range-slider" id="touchSizeSlider" min="20" max="120" value="50" step="5" oninput="onTouchSizeChange(this.value)">
+        <div class="touch-preset-pills">
+          <div class="touch-preset-btn" onclick="setTouchSize(30)">3 cm</div>
+          <div class="touch-preset-btn" onclick="setTouchSize(40)">4 cm</div>
+          <div class="touch-preset-btn is-active" id="presetSize50" onclick="setTouchSize(50)">5 cm ★</div>
+          <div class="touch-preset-btn" onclick="setTouchSize(60)">6 cm</div>
+          <div class="touch-preset-btn" onclick="setTouchSize(80)">8 cm</div>
+        </div>
+      </div>
+
+      <!-- 3. THANH TRƯỢT SỐ LƯỢNG -->
+      <div class="touch-slider-group">
+        <div class="touch-slider-header">
+          <span class="touch-slider-title">Số lượng in:</span>
+          <span class="touch-slider-val" id="touchQtyDisplay">500 con (Tiết kiệm 35% 🔥)</span>
+        </div>
+        <input type="range" class="touch-range-slider" id="touchQtySlider" min="100" max="2000" value="500" step="50" oninput="onTouchQtyChange(this.value)">
+        <div class="touch-preset-pills">
+          <div class="touch-preset-btn" onclick="setTouchQty(100)">100 con</div>
+          <div class="touch-preset-btn" onclick="setTouchQty(200)">200 con</div>
+          <div class="touch-preset-btn is-active" id="presetQty500" onclick="setTouchQty(500)">500 con ★</div>
+          <div class="touch-preset-btn" onclick="setTouchQty(1000)">1.000 con 🏆</div>
+          <div class="touch-preset-btn" onclick="setTouchQty(2000)">2.000 con</div>
+        </div>
+      </div>
+
+      <!-- 4. KHỐI GIÁ NỔI BẬT & CHỐT ĐƠN -->
+      <div class="touch-price-box">
+        <div>
+          <div class="touch-price-label">Tổng tiền (Giá xưởng):</div>
+          <div class="touch-price-val" id="touchTotalPrice">180.000 đ</div>
+        </div>
+        <div>
+          <div class="touch-unit-val" id="touchUnitPrice">~360 đ / con</div>
+          <div style="font-size: 10px; color: #22c55e; font-weight: 700; text-align: right; margin-top: 2px;">⚡ Rẻ hơn 40%</div>
+        </div>
+      </div>
+
+      <!-- CẶP NÚT HÀNH ĐỘNG 1 CHẠM -->
+      <div style="display: flex; gap: 8px;">
+        <a href="https://zalo.me/0937650121" target="_blank" class="btn-zalo-primary" id="touchZaloBtn" style="flex: 2; padding: 12px 14px; font-size: 13.5px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none;">
+          <span>💬 Đặt In Mẫu Này (Zalo)</span>
+        </a>
+        <button type="button" class="btn-copy-glass" onclick="copyTouchPriceQuote()" style="flex: 1; padding: 12px 8px; font-size: 12px; border-radius: 12px;">
+          📋 Sao Chép
+        </button>
+      </div>
+      <p style="font-size: 11px; color: #94a3b8; text-align: center; margin-top: 8px; margin-bottom: 0;">
+        🛡️ Miễn phí thiết kế 100% • Tặng mẫu in thử • Giao hàng toàn quốc
+      </p>
+    </div>
+
       <!-- THẺ TRÁI ĐIỆN THOẠI: FORM NHẬP CÙNG HÀNG GỌN GÀNG -->
       <div class="calc-form-card">
         <div class="calc-card-header-badge">
@@ -8434,6 +8910,165 @@ function toggleFaq(elem) {
   }
 }
 
+</script>
+
+
+  <!-- THANH GHIM ĐÁY MÀN HÌNH (STICKY GLASS BAR) CHO MOBILE -->
+  <div class="mobile-sticky-bar" id="mobileStickyBar">
+    <div class="sticky-bar-info">
+      <span class="sticky-bar-label" id="stickySpecsLabel">500 con • 5x5cm</span>
+      <span class="sticky-bar-price" id="stickyPriceText">180.000 đ</span>
+    </div>
+    <a href="https://zalo.me/0937650121" target="_blank" class="sticky-btn-zalo" id="stickyZaloAction">
+      <span>Zalo 1 Chạm 💬</span>
+    </a>
+  </div>
+
+
+<script>
+// BIẾN TRẠNG THÁI TOUCH CALC CHO MOBILE
+var currentTouchSize = 50; // mm
+var currentTouchQty = 500;
+var currentTouchShape = 'round';
+var currentTouchMaterial = 'paper';
+
+function onTouchSizeChange(val) {
+  currentTouchSize = parseInt(val, 10);
+  document.getElementById('touchSizeDisplay').textContent = (currentTouchSize / 10).toFixed(1) + ' cm (' + currentTouchSize + ' mm)';
+  
+  // Scale con tem trực quan
+  var preview = document.getElementById('touchStickerPreview');
+  var baseSize = 60 + (currentTouchSize - 20) * (60 / 100); // 60px to 120px
+  if (preview) {
+    if (currentTouchShape === 'round' || currentTouchShape === 'square') {
+      preview.style.width = baseSize + 'px';
+      preview.style.height = baseSize + 'px';
+    } else if (currentTouchShape === 'rect') {
+      preview.style.width = (baseSize * 1.3) + 'px';
+      preview.style.height = (baseSize * 0.75) + 'px';
+    } else if (currentTouchShape === 'oval') {
+      preview.style.width = (baseSize * 1.25) + 'px';
+      preview.style.height = (baseSize * 0.8) + 'px';
+    }
+  }
+
+  // Update badge
+  var shapeNames = { round: 'Tròn', square: 'Vuông', rect: 'Chữ Nhật', oval: 'Elip', diecut: 'Bế Tự Do' };
+  document.getElementById('touchDimBadge').textContent = currentTouchSize + ' x ' + currentTouchSize + ' mm (' + (currentTouchSize/10).toFixed(1) + 'cm) • Hình ' + shapeNames[currentTouchShape];
+
+  // Sync to original mobile inputs
+  var inpW = document.getElementById('inputWidthMobile');
+  var inpH = document.getElementById('inputHeightMobile');
+  if (inpW) inpW.value = currentTouchSize;
+  if (inpH) inpH.value = currentTouchSize;
+
+  recalcTouchPrice();
+}
+
+function setTouchSize(val) {
+  var slider = document.getElementById('touchSizeSlider');
+  if (slider) slider.value = val;
+  onTouchSizeChange(val);
+
+  // Update active preset button
+  document.querySelectorAll('.touch-slider-group:nth-child(2) .touch-preset-btn').forEach(function(btn) {
+    btn.classList.remove('is-active');
+  });
+  if (event && event.target) event.target.classList.add('is-active');
+}
+
+function onTouchQtyChange(val) {
+  currentTouchQty = parseInt(val, 10);
+  var savePercent = '';
+  if (currentTouchQty >= 1000) savePercent = ' (Tiết kiệm 50% 🏆)';
+  else if (currentTouchQty >= 500) savePercent = ' (Tiết kiệm 35% 🔥)';
+  else if (currentTouchQty >= 200) savePercent = ' (Tiết kiệm 20%)';
+  document.getElementById('touchQtyDisplay').textContent = currentTouchQty.toLocaleString('vi-VN') + ' con' + savePercent;
+
+  var inpQty = document.getElementById('inputQtyMobile');
+  if (inpQty) inpQty.value = currentTouchQty;
+
+  recalcTouchPrice();
+}
+
+function setTouchQty(val) {
+  var slider = document.getElementById('touchQtySlider');
+  if (slider) slider.value = val;
+  onTouchQtyChange(val);
+
+  document.querySelectorAll('.touch-slider-group:nth-child(3) .touch-preset-btn').forEach(function(btn) {
+    btn.classList.remove('is-active');
+  });
+  if (event && event.target) event.target.classList.add('is-active');
+}
+
+function selectTouchShape(shape) {
+  currentTouchShape = shape;
+  document.querySelectorAll('.touch-shape-btn').forEach(function(btn) { btn.classList.remove('is-active'); });
+  var activeBtn = document.getElementById('shape' + shape.charAt(0).toUpperCase() + shape.slice(1));
+  if (activeBtn) activeBtn.classList.add('is-active');
+
+  var preview = document.getElementById('touchStickerPreview');
+  if (preview) {
+    if (shape === 'round') {
+      preview.style.borderRadius = '50%';
+    } else if (shape === 'square') {
+      preview.style.borderRadius = '12px';
+    } else if (shape === 'rect') {
+      preview.style.borderRadius = '12px';
+    } else if (shape === 'oval') {
+      preview.style.borderRadius = '50% / 35%';
+    } else if (shape === 'diecut') {
+      preview.style.borderRadius = '24px 8px 24px 8px';
+    }
+  }
+
+  onTouchSizeChange(currentTouchSize);
+}
+
+function recalcTouchPrice() {
+  // Lấy đơn giá chuẩn theo diện tích và số lượng
+  var areaCm2 = (currentTouchSize / 10) * (currentTouchSize / 10);
+  var baseRate = 0.08; // đ/mm2
+  var unitPrice = Math.max(60, Math.round((areaCm2 * 18 * (1000 / (currentTouchQty + 400))) / 10) * 10);
+  var totalPrice = unitPrice * currentTouchQty;
+
+  // Format hiển thị
+  var strTotal = totalPrice.toLocaleString('vi-VN') + ' đ';
+  var strUnit = '~' + unitPrice.toLocaleString('vi-VN') + ' đ / con';
+  var strSpecs = currentTouchQty.toLocaleString('vi-VN') + ' con • ' + (currentTouchSize/10).toFixed(0) + 'cm';
+
+  var elTotal = document.getElementById('touchTotalPrice');
+  var elUnit = document.getElementById('touchUnitPrice');
+  var elStickyPrice = document.getElementById('stickyPriceText');
+  var elStickySpecs = document.getElementById('stickySpecsLabel');
+
+  if (elTotal) elTotal.textContent = strTotal;
+  if (elUnit) elUnit.textContent = strUnit;
+  if (elStickyPrice) elStickyPrice.textContent = strTotal;
+  if (elStickySpecs) elStickySpecs.textContent = strSpecs;
+
+  // Cập nhật link Zalo có kèm thông tin tem đã chọn
+  var zaloMsg = encodeURIComponent("Chào Sticker Gia Minh, mình muốn đặt in tem: Kích thước " + currentTouchSize + "mm (" + (currentTouchSize/10).toFixed(0) + "cm), Số lượng " + currentTouchQty + " con, hình " + currentTouchShape + ". Báo giá khoảng " + strTotal + ". Tư vấn giúp mình nhé!");
+  var zaloLink = "https://zalo.me/0937650121?text=" + zaloMsg;
+  var btnZalo = document.getElementById('touchZaloBtn');
+  var btnStickyZalo = document.getElementById('stickyZaloAction');
+  if (btnZalo) btnZalo.href = zaloLink;
+  if (btnStickyZalo) btnStickyZalo.href = zaloLink;
+}
+
+function copyTouchPriceQuote() {
+  var strTotal = document.getElementById('touchTotalPrice').textContent;
+  var text = "BÁO GIÁ STICKER GIA MINH:\n- Kích thước: " + currentTouchSize + " x " + currentTouchSize + " mm (" + (currentTouchSize/10).toFixed(0) + "cm)\n- Số lượng: " + currentTouchQty + " con\n- Tạm tính: " + strTotal + "\n- Hotline/Zalo: 0937.650.121\n- Website: https://stickergiaminh.com";
+  navigator.clipboard.writeText(text).then(function() {
+    alert("Đã sao chép báo giá vào bộ nhớ tạm!");
+  });
+}
+
+// Khởi chạy khi tải trang
+document.addEventListener('DOMContentLoaded', function() {
+  recalcTouchPrice();
+});
 </script>
 
 </body>
