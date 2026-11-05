@@ -6079,7 +6079,51 @@ body.phone-mode .visitor-counter {
 
 
     /* ======================================================== */
-    /* PHƯƠNG ÁN MỚI: ĐƯA 3D MOCKUP LÊN HÀNG ĐẦU & VUỐT TAY CẢM ỨNG */
+        
+    @media (max-width: 600px) {
+      .demo-bar {
+        padding: 5px 8px !important;
+        justify-content: center !important;
+      }
+      .demo-bar .controls-group,
+      .demo-bar .demo-title > span {
+        display: none !important;
+      }
+      .demo-bar .demo-title {
+        width: 100% !important;
+        justify-content: center !important;
+        margin: 0 !important;
+      }
+    }
+
+    /* TỐI ƯU KHI MỞ TRỰC TIẾP TRÊN MÀN HÌNH ĐIỆN THOẠI THẬT */
+    @media (max-width: 600px) {
+      body.phone-mode {
+        padding: 0 !important;
+        background: #020105 !important;
+      }
+      body.phone-mode #phoneStage {
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      body.phone-mode #siteWrapper {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        transform: none !important;
+        background: transparent !important;
+      }
+      body.phone-mode #siteWrapper::before,
+      body.phone-mode #siteWrapper::after {
+        display: none !important;
+      }
+    }
+
+/* PHƯƠNG ÁN MỚI: ĐƯA 3D MOCKUP LÊN HÀNG ĐẦU & VUỐT TAY CẢM ỨNG */
     /* ======================================================== */
     
     .phone-mode .hero-container {

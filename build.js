@@ -21,11 +21,12 @@ function copyRecursive(src, dest) {
 
 const items = [
   'index.html',
-  'og-banner.png',
   'DEMO_STICKER_GIAMINH.html',
   'DEMO_OPTION_2.html',
+  'og-banner.png',
   'assets',
   'HINH XOAY',
+  'TEM_TACH_NEN',
   'logo-gm-emblem.png',
   'logo-gm-original.png',
   'logo-gm-transparent.png',

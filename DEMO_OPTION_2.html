@@ -6081,8 +6081,55 @@ body.phone-mode .visitor-counter {
     /* ======================================================== */
     
     
+    
     /* ======================================================== */
-    /* OPTION 2: 3D COVERFLOW VÔ CỰC (APPLE STYLE PERSPECTIVE) */
+    
+    
+    @media (max-width: 600px) {
+      .demo-bar {
+        padding: 5px 8px !important;
+        justify-content: center !important;
+      }
+      .demo-bar .controls-group,
+      .demo-bar .demo-title > span {
+        display: none !important;
+      }
+      .demo-bar .demo-title {
+        width: 100% !important;
+        justify-content: center !important;
+        margin: 0 !important;
+      }
+    }
+
+    /* TỐI ƯU KHI MỞ TRỰC TIẾP TRÊN MÀN HÌNH ĐIỆN THOẠI THẬT */
+    @media (max-width: 600px) {
+      body.phone-mode {
+        padding: 0 !important;
+        background: #020105 !important;
+      }
+      body.phone-mode #phoneStage {
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      body.phone-mode #siteWrapper {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        transform: none !important;
+        background: transparent !important;
+      }
+      body.phone-mode #siteWrapper::before,
+      body.phone-mode #siteWrapper::after {
+        display: none !important;
+      }
+    }
+
+    /* ======================================================== */
+    /* PHƯƠNG ÁN MỚI: ĐƯA 3D MOCKUP LÊN HÀNG ĐẦU & VUỐT TAY CẢM ỨNG */
     /* ======================================================== */
 
     .phone-mode .hero-container {
@@ -6092,77 +6139,107 @@ body.phone-mode .visitor-counter {
       text-align: center !important;
       padding-top: 10px !important;
     }
-    
+
     .phone-mode .hero-content {
       display: contents !important;
     }
 
     .phone-mode .hero-brand-hero {
       order: 1 !important;
-      margin: 4px 0 6px !important;
+      margin-bottom: 6px !important;
     }
     .phone-mode .hero-brand-title {
-      font-size: 22px !important;
-      line-height: 1.2 !important;
+      font-size: 23px !important;
+      letter-spacing: -0.3px !important;
     }
     .phone-mode .hero-brand-subtitle {
       font-size: 13px !important;
       color: #38bdf8 !important;
-      margin-top: 4px !important;
+      font-weight: 700 !important;
     }
 
-    /* ĐƯA 3D COVERFLOW LÊN HÀNG ĐẦU NGAY DƯỚI TIÊU ĐỀ */
+    /* ĐƯA 3D MOCKUP LÊN VỊ TRÍ SỐ 2 (NGAY DƯỚI TIÊU ĐỀ) */
     .phone-mode .fan-stage {
       order: 2 !important;
-      height: 330px !important;
+      height: auto !important;
+      min-height: 380px !important;
       width: 100% !important;
-      max-width: 380px !important;
-      margin: 4px auto 10px !important;
-      perspective: 1100px !important;
-      perspective-origin: 50% 50% !important;
+      max-width: 360px !important;
+      margin: 6px auto 10px !important;
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
       justify-content: center !important;
+      position: relative !important;
     }
 
-    /* THANH FILTER NGÀNH HÀNG TRÊN OPTION 2 */
-    .opt2-category-filter {
+    /* THANH LỌC CHỦ ĐỀ NGÀNH HÀNG OPTION 2 */
+    .opt2-category-bar {
       display: flex;
-      gap: 6px;
       overflow-x: auto;
+      white-space: nowrap;
+      gap: 6px;
+      padding: 6px 4px 8px;
+      width: 100%;
+      max-width: 360px;
+      margin: 2px auto 6px;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
-      padding: 4px 4px 10px;
-      margin: 0 auto 8px;
-      max-width: 360px;
-      width: 100%;
+      justify-content: flex-start;
     }
-    .opt2-category-filter::-webkit-scrollbar {
+    .opt2-category-bar::-webkit-scrollbar {
       display: none;
     }
     .opt2-cat-pill {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      color: #94a3b8;
-      font-size: 11px;
-      font-weight: 600;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
       padding: 5px 12px;
       border-radius: 999px;
-      white-space: nowrap;
+      font-size: 11.5px;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-      user-select: none;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+      flex-shrink: 0;
     }
-    .opt2-cat-pill.is-active {
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.4), rgba(56, 189, 248, 0.4));
-      border-color: #38bdf8;
+    .opt2-cat-pill.is-active,
+    .opt2-cat-pill:hover {
+      background: linear-gradient(135deg, #a855f7, #0284c7);
       color: #ffffff;
-      font-weight: 700;
-      box-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
-      transform: scale(1.05);
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.35);
     }
 
+    .mobile-swipe-hint {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin: 4px auto 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 3px 12px;
+      border-radius: 999px;
+    }
+
+    /* BỘ 4 TRỤ CỘT & NÚT HÀNH ĐỘNG ĐỨNG SAU 3D DECK */
+    .phone-mode .retention-grid {
+      order: 5 !important;
+      width: 100% !important;
+    }
+    .phone-mode .hero-actions {
+      order: 6 !important;
+      width: 100% !important;
+    }
+
+
+    /* HIỆU ỨNG TEM TÁCH NỀN 3D BAY BỒNG BỀNH (FLOATING STICKERS)*/
+    /* ======================================================== */
+    
     .phone-mode .cards-deck {
       width: 250px !important;
       height: 250px !important;
@@ -6176,70 +6253,76 @@ body.phone-mode .visitor-counter {
     .phone-mode .fan-card {
       width: 250px !important;
       height: 250px !important;
-      border-radius: 20px !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
       position: absolute !important;
       top: 0 !important;
       left: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
       transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s ease, filter 0.65s ease !important;
-      -webkit-box-reflect: below 6px linear-gradient(transparent 75%, rgba(255,255,255,0.15)) !important;
     }
 
-    /* CÁC VỊ TRÍ 3D TRỤC NGHIÊNG (COVERFLOW SLOTS) */
+    /* ẨN TOÀN BỘ KHUNG VIỀN CHỮ DƯỚI CARD ĐỂ CON TEM BAY TỰ DO */
+    .phone-mode .card-floating-caption {
+      display: none !important;
+    }
+
+    .phone-mode .fan-card img {
+      width: 96% !important;
+      height: 96% !important;
+      object-fit: contain !important;
+      background: transparent !important;
+      border-radius: 0 !important;
+      filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.75)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5)) !important;
+      transition: filter 0.5s ease, transform 0.5s ease !important;
+    }
+
+    /* CÁC VỊ TRÍ 3D TRỤC NGHIÊNG (COVERFLOW) */
     .phone-mode .fan-card.slot-left {
-      transform: translateX(-105px) translateZ(-110px) rotateY(42deg) scale(0.85) !important;
-      opacity: 0.6 !important;
+      transform: translateX(-100px) translateZ(-90px) rotateY(38deg) scale(0.82) !important;
+      opacity: 0.55 !important;
       filter: brightness(0.65) blur(0.5px) !important;
       z-index: 2 !important;
       pointer-events: none;
     }
 
     .phone-mode .fan-card.slot-center {
-      transform: translateX(0px) translateZ(50px) rotateY(0deg) scale(1.08) !important;
+      transform: translateX(0px) translateZ(40px) rotateY(0deg) scale(1.08) !important;
       opacity: 1 !important;
-      filter: brightness(1) !important;
+      filter: brightness(1.02) !important;
       z-index: 10 !important;
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.85), 0 0 0 2.5px rgba(56, 189, 248, 0.6) !important;
+    }
+
+    .phone-mode .fan-card.slot-center img {
+      filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 25px rgba(168, 85, 247, 0.5)) !important;
+      animation: floatTransparentSticker 3s ease-in-out infinite alternate !important;
+    }
+
+    @keyframes floatTransparentSticker {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-8px) rotate(1.2deg); }
     }
 
     .phone-mode .fan-card.slot-right {
-      transform: translateX(105px) translateZ(-110px) rotateY(-42deg) scale(0.85) !important;
-      opacity: 0.6 !important;
+      transform: translateX(100px) translateZ(-90px) rotateY(-38deg) scale(0.82) !important;
+      opacity: 0.55 !important;
       filter: brightness(0.65) blur(0.5px) !important;
       z-index: 2 !important;
       pointer-events: none;
     }
 
-    /* CẶP NÚT ACTION NGAY DƯỚI 3D MOCKUP */
-    .phone-mode .hero-cta-group {
-      order: 3 !important;
-      display: flex !important;
-      gap: 10px !important;
-      width: 100% !important;
-      max-width: 340px !important;
-      margin: 10px auto 16px !important;
-    }
-    .phone-mode .hero-cta-group a {
-      flex: 1 !important;
-      padding: 11px 12px !important;
-      font-size: 13px !important;
-      border-radius: 12px !important;
-      text-align: center !important;
-      justify-content: center !important;
-    }
-
-    /* TIẾP THEO: SLOGAN & 4 TRỤ CỘT */
-    .phone-mode .slogan-pill {
-      order: 4 !important;
-      font-size: 11px !important;
-      margin-bottom: 12px !important;
-    }
-    .phone-mode .retention-grid {
-      order: 5 !important;
-      margin-bottom: 20px !important;
-    }
-    .phone-mode .hero-desc {
-      order: 6 !important;
-      display: none !important;
+    /* ĐĨA BÓNG ĐỔ DƯỚI ĐÁY CON TEM */
+    .sticker-floor-shadow {
+      width: 140px;
+      height: 16px;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.75) 0%, rgba(168,85,247,0.2) 45%, transparent 75%);
+      border-radius: 50%;
+      margin: 6px auto 4px;
+      filter: blur(2px);
     }
 
 </style>
@@ -6422,53 +6505,71 @@ body.phone-mode .visitor-counter {
 
     <!-- CỘT PHẢI: 3 TẤM HÌNH LỚN TRÀN VIỀN ĐẢO LỚP XOAY VÒNG -->
     <div class="fan-stage">
-      
-      <!-- KHUNG 3 TẤM THẺ ĐẢO VỊ TRÍ CHO NHAU -->
+
+      <!-- KHUNG 3 TẤM TEM TÁCH NỀN ĐẢO VỊ TRÍ CHO NHAU -->
       <div class="cards-deck" id="cardsDeck">
-        
+
         <!-- THẺ 1 (TRÁI) -->
         <div class="fan-card slot-left" id="cardEl0">
-          <img id="img0" src="HINH XOAY/mockup_20260901_112020.png" alt="Hạt Sen Sấy Giòn">
+          <img id="img0" src="TEM_TACH_NEN/15.png" alt="Tem Tách Nền">
           <div class="card-floating-caption">
-            <div class="card-name" id="name0">Hạt Sen Sấy Giòn</div>
-            <div class="card-style" id="style0">Thanh tao, tao nhã, truyền thống</div>
+            <div class="card-name" id="name0"></div>
+            <div class="card-style" id="style0"></div>
           </div>
         </div>
 
-        <!-- THẺ 2 (GIỮA - NỔI BẬT) -->
+        <!-- THẺ 2 (GIỮA - NỔI BẬT BAY BỒNG BỀNH) -->
         <div class="fan-card slot-center" id="cardEl1">
-          <img id="img1" src="HINH XOAY/01_sticker_tết_an_phúc_mùa_xuân.png" alt="Bánh Quy Tết Mùa Xuân">
+          <img id="img1" src="TEM_TACH_NEN/1.png" alt="Tem Tách Nền">
           <div class="card-floating-caption">
-            <div class="card-name" id="name1">Bánh Quy Tết Mùa Xuân</div>
-            <div class="card-style" id="style1">Đầm ấm, sắc xuân rộn ràng</div>
+            <div class="card-name" id="name1"></div>
+            <div class="card-style" id="style1"></div>
           </div>
         </div>
 
         <!-- THẺ 3 (PHẢI) -->
         <div class="fan-card slot-right" id="cardEl2">
-          <img id="img2" src="HINH XOAY/02_sticker_thiết_kế_trà_trái_cây.png" alt="Trà Trái Cây Nhiệt Đới">
+          <img id="img2" src="TEM_TACH_NEN/2.png" alt="Tem Tách Nền">
           <div class="card-floating-caption">
-            <div class="card-name" id="name2">Trà Trái Cây Nhiệt Đới</div>
-            <div class="card-style" id="style2">Tươi mát, ngọt ngào, đáng yêu</div>
+            <div class="card-name" id="name2"></div>
+            <div class="card-style" id="style2"></div>
           </div>
         </div>
 
       </div>
 
+      <!-- ĐĨA BÓNG ĐỔ DƯỚI ĐÁY CON TEM TÁCH NỀN -->
+      <div class="sticker-floor-shadow"></div>
+
       <!-- THANH THỜI GIAN VÀ THÔNG TIN MẪU ĐANG Ở VỊ TRÍ TRUNG TÂM -->
       <div class="fan-footer">
         <div class="category-label" id="catLabel">
           <span class="dot"></span>
-          <span id="spotlightText">Đang nổi bật: Bánh Quy Tết Mùa Xuân</span>
+          <span id="spotlightText">Đang nổi bật: Kem Body Mộc Vân Luxury</span>
         </div>
+        <div id="spotlightSub" style="font-size: 11px; color: #38bdf8; font-weight: 600; text-align: center; margin: 2px 0 6px;">Cắt bế tròn • Decal nhũ vàng sang trọng</div>
 
         <div class="timer-bar-wrap">
           <div class="timer-bar" id="timerBar"></div>
         </div>
 
         <div class="dots-nav" id="dotsContainer">
-          <!-- 11 Chấm đại diện cho 11 mẫu thực tế xoay vòng -->
+          <!-- 15 Chấm chỉ số tương ứng 15 mẫu thực tế -->
         </div>
+      </div>
+
+      <!-- BỘ LỌC CHỦ ĐỀ NGÀNH HÀNG DÀNH RIÊNG CHO OPTION 2 -->
+      <div class="opt2-category-bar">
+        <button class="opt2-cat-pill is-active" onclick="filterByCat('all', event)">✨ Tất Cả (15)</button>
+        <button class="opt2-cat-pill" onclick="filterByCat('my-pham', event)">💄 Mỹ Phẩm & Spa</button>
+        <button class="opt2-cat-pill" onclick="filterByCat('an-vat', event)">🍱 Ăn Vặt & Bánh</button>
+        <button class="opt2-cat-pill" onclick="filterByCat('tra-sua', event)">🧋 Trà Sữa & Cafe</button>
+        <button class="opt2-cat-pill" onclick="filterByCat('qua-bieu', event)">🧧 Yến Sào & Nông Sản</button>
+      </div>
+
+      <!-- CHỈ DẪN VUỐT CẢM ỨNG TRÊN MOBILE -->
+      <div class="mobile-swipe-hint">
+        <span>👈 Vuốt tay lướt 15 mẫu tem tách nền 3D 👉</span>
       </div>
 
     </div>
@@ -7881,63 +7982,26 @@ body.phone-mode .visitor-counter {
 
   <script>
     // DANH SÁCH 11 MẪU TEM MOCKUP THỰC TẾ CỦA GIA MINH
-    const stickerList = [
-      {
-        name: "Bánh Quy Tết Mùa Xuân",
-        style: "Đầm ấm, sắc xuân rộn ràng",
-        img: "HINH XOAY/01_sticker_tết_an_phúc_mùa_xuân.png"
-      },
-      {
-        name: "Trà Trái Cây Nhiệt Đới",
-        style: "Tươi mát, ngọt ngào, đáng yêu",
-        img: "HINH XOAY/02_sticker_thiết_kế_trà_trái_cây.png"
-      },
-      {
-        name: "Kem Body Dưỡng Sáng",
-        style: "Sang trọng, quý phái, kiêu sa",
-        img: "HINH XOAY/05_nhãn_sản_phẩm_mộc_vân_cao_cấp.png"
-      },
-      {
-        name: "Mắm Tép Trộn Đu Đủ",
-        style: "Dân dã, đậm đà vị quê hương",
-        img: "HINH XOAY/07_nhãn_dán_mắm_tép_trộn_đu_đủ.png"
-      },
-      {
-        name: "Yến Sào Thượng Hạng",
-        style: "Trang nhã, tinh tế, cao cấp",
-        img: "HINH XOAY/15_nhãn_dán_yến_kim_phúc.png"
-      },
-      {
-        name: "Bánh Tráng & Cơm Cháy",
-        style: "Trẻ trung, vui tươi, bắt mắt",
-        img: "HINH XOAY/26_sticker_tiệm_ăn_vặt_mộc_nhi.png"
-      },
-      {
-        name: "Tẩy Tế Bào Chết Cà Phê",
-        style: "Mộc mạc, vintage, tự nhiên",
-        img: "HINH XOAY/MOCKUP_08_imagegen.png"
-      },
-      {
-        name: "Sầu Riêng Tươi Nguyên Chất",
-        style: "Rực rỡ, thơm lành, hấp dẫn",
-        img: "HINH XOAY/mockup_20260731_091004.png"
-      },
-      {
-        name: "Cháo Gỏi Gà Vịt",
-        style: "Ấm cúng, gần gũi, ngon miệng",
-        img: "HINH XOAY/mockup_20260803_114732.png"
-      },
-      {
-        name: "Khô Bò & Đồ Ăn Vặt",
-        style: "Giòn ngon, kích thích vị giác",
-        img: "HINH XOAY/mockup_20260830_092220.png"
-      },
-      {
-        name: "Hạt Sen Sấy Giòn",
-        style: "Thanh tao, tao nhã, truyền thống",
-        img: "HINH XOAY/mockup_20260901_112020.png"
-      }
+    
+    // DANH SÁCH 15 MẪU TEM TÁCH NỀN TRONG SUỐT (OPTION 2: FLOATING 3D)
+        const stickerList = [
+      { name: "Kem Body Mộc Vân Luxury", style: "Cắt bế tròn • Decal nhũ vàng sang trọng", img: "TEM_TACH_NEN/1.png", cat: "my-pham" },
+      { name: "Bếp Mèo Miu – Ăn Vặt Nhà Làm", style: "Cắt bế tròn • Decal sữa tươi sáng cute", img: "TEM_TACH_NEN/2.png", cat: "an-vat" },
+      { name: "Bánh Tráng Cô Nhi", style: "Cắt bế tròn • Decal sữa cán màng bóng", img: "TEM_TACH_NEN/3.png", cat: "an-vat" },
+      { name: "Trà Sữa & Ăn Vặt Miu Miu", style: "Cắt bế tròn • Chống thấm nước 100%", img: "TEM_TACH_NEN/4.png", cat: "tra-sua" },
+      { name: "Yến Kim Phúc – Thượng Hạng", style: "Cắt bế tròn • Ép kim đỏ ruby quý phái", img: "TEM_TACH_NEN/5.png", cat: "qua-bieu" },
+      { name: "Bếp Trà Mây MiuMiu", style: "Cắt bế tròn • Decal sữa ngọt ngào", img: "TEM_TACH_NEN/6.png", cat: "tra-sua" },
+      { name: "Kem Body Dạ Lan Beauty", style: "Cắt bế tròn • Decal nền đen ép nhũ vàng", img: "TEM_TACH_NEN/7.png", cat: "my-pham" },
+      { name: "Mộc Nâu Coffee Scrub", style: "Cắt bế tròn • Decal Kraft vintage cà phê", img: "TEM_TACH_NEN/8.png", cat: "my-pham" },
+      { name: "Tem Nông Sản Sầu Riêng", style: "Cắt bế tròn • Decal nhựa chống dầu mỡ", img: "TEM_TACH_NEN/9.png", cat: "qua-bieu" },
+      { name: "Mật Ong Kiên Nông Cao Bạch Hoa", style: "Cắt bế tròn • Decal vàng ấm dán hũ thủy tinh", img: "TEM_TACH_NEN/10.png", cat: "qua-bieu" },
+      { name: "Tiệm Bánh Gấu Hồng Ngự Bakery", style: "Cắt bế tròn • Decal sữa dán hộp bánh", img: "TEM_TACH_NEN/11.png", cat: "an-vat" },
+      { name: "Lunaria Milk Tea Premium", style: "Cắt bế tròn • Decal trong suốt sang chảnh", img: "TEM_TACH_NEN/12.png", cat: "tra-sua" },
+      { name: "Trà Sữa Nhà Làm Kori Milk Tea", style: "Cắt bế tròn • Decal sữa kháng nước đá", img: "TEM_TACH_NEN/13.png", cat: "tra-sua" },
+      { name: "Cà Phê Mộc Nguyên Chất", style: "Cắt bế tròn • Tông vàng nâu cổ điển", img: "TEM_TACH_NEN/14.png", cat: "tra-sua" },
+      { name: "Tiệm Bánh Kim Ngân", style: "Cắt bế tròn • Decal ép kim thanh lịch", img: "TEM_TACH_NEN/15.png", cat: "an-vat" }
     ];
+
 
     // Nạp sẵn toàn bộ ảnh vào bộ nhớ đệm
     stickerList.forEach(item => {
@@ -7994,6 +8058,10 @@ body.phone-mode .visitor-counter {
       });
 
       spotlightText.innerText = `Đang nổi bật: ${stickerList[currentCenterItem].name}`;
+      const elSub = document.getElementById('spotlightSub');
+      if (elSub && stickerList[currentCenterItem]) {
+        elSub.innerText = stickerList[currentCenterItem].style;
+      }
 
       // Cập nhật chấm active
       document.querySelectorAll('.dot-btn').forEach((d, i) => {
@@ -9179,27 +9247,27 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 // OPTION 2: LỌC MẪU THEO NGÀNH HÀNG & 3D COVERFLOW CONTROLS
 var catMap = {
-  'all': 0,        // Bánh Quy Tết
-  'tra-sua': 1,    // Trà Trái Cây
-  'my-pham': 2,    // Kem Body
-  'an-vat': 5,     // Bánh Tráng & Cơm Cháy
-  'qua-tet': 4     // Yến Sào Thượng Hạng
+  'all': 0,        // Mẫu 1: Mộc Vân Luxury
+  'my-pham': 0,    // Mẫu 1: Kem Body Mộc Vân Luxury
+  'an-vat': 1,     // Mẫu 2: Bếp Mèo Miu
+  'tra-sua': 3,    // Mẫu 4: Trà Sữa Miu Miu
+  'qua-bieu': 4    // Mẫu 5: Yến Kim Phúc Thượng Hạng
 };
 
 function filterByCat(cat, ev) {
   document.querySelectorAll('.opt2-cat-pill').forEach(function(p) { p.classList.remove('is-active'); });
   if (ev && ev.target) ev.target.classList.add('is-active');
 
-  var targetIdx = catMap[cat] || 0;
-  var steps = (targetIdx - currentCenterItem + stickerList.length) % stickerList.length;
-  
-  if (steps > 0) {
-    var count = 0;
-    var interval = setInterval(function() {
-      rotateForward();
-      count++;
-      if (count >= steps) clearInterval(interval);
-    }, 280);
+  var targetIdx = (catMap[cat] !== undefined) ? catMap[cat] : 0;
+  if (typeof jumpToItem === 'function') {
+    jumpToItem(targetIdx);
+  }
+});
+  if (ev && ev.target) ev.target.classList.add('is-active');
+
+  var targetIdx = (catMap[cat] !== undefined) ? catMap[cat] : 0;
+  if (typeof jumpToItem === 'function') {
+    jumpToItem(targetIdx);
   }
 }
 </script>
