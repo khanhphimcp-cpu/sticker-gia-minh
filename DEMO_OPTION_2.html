@@ -2102,6 +2102,16 @@
       width: 175px;
       height: 175px;
     }
+    .phone-mode .cards-deck.is-dragging {
+      cursor: grabbing !important;
+    }
+    .phone-mode .cards-deck.is-dragging .fan-card {
+      transition: none !important;
+    }
+    .phone-mode .cards-deck.is-dragging .fan-card.slot-center img {
+      animation-play-state: paused !important;
+    }
+
     body.phone-mode .fan-card {
       width: 175px;
       height: 175px;
@@ -9221,49 +9231,177 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <script>
-// CỬ CHỈ VUỐT TAY TRÊN ĐIỆN THOẠI (TOUCH SWIPE GESTURES CHO 3D CARDS DECK)
+// TƯƠNG TÁC VẬT LÝ XÚC GIÁC THỜI GIAN THỰC (REAL-TIME DIRECT MANIPULATION TACTILE DRAG)
 (function() {
   var deck = document.getElementById('cardsDeck');
   if (!deck) return;
 
   var touchStartX = 0;
   var touchStartY = 0;
-  var touchEndX = 0;
-  var touchEndY = 0;
-  var isSwiping = false;
+  var touchStartTime = 0;
+  var currentDiffX = 0;
+  var currentDiffY = 0;
+  var isDragging = false;
+  var activeCenterEl = null;
+  var activeLeftEl = null;
+  var activeRightEl = null;
 
-  deck.addEventListener('touchstart', function(e) {
-    if (e.touches.length === 1) {
-      touchStartX = e.touches[0].clientX;
-      touchStartY = e.touches[0].clientY;
-      isSwiping = true;
+  function getCards() {
+    var cIdx = (typeof cardSlots !== 'undefined') ? cardSlots.indexOf(1) : 1;
+    var lIdx = (typeof cardSlots !== 'undefined') ? cardSlots.indexOf(0) : 0;
+    var rIdx = (typeof cardSlots !== 'undefined') ? cardSlots.indexOf(2) : 2;
+    return {
+      center: (typeof cardElements !== 'undefined' && cardElements[cIdx]) ? cardElements[cIdx] : document.getElementById('cardEl1'),
+      left: (typeof cardElements !== 'undefined' && cardElements[lIdx]) ? cardElements[lIdx] : document.getElementById('cardEl0'),
+      right: (typeof cardElements !== 'undefined' && cardElements[rIdx]) ? cardElements[rIdx] : document.getElementById('cardEl2')
+    };
+  }
+
+  function handleTouchStart(e) {
+    if (e.touches && e.touches.length !== 1) return;
+    if (typeof isMoving !== 'undefined' && isMoving) return;
+
+    var cards = getCards();
+    activeCenterEl = cards.center;
+    activeLeftEl = cards.left;
+    activeRightEl = cards.right;
+
+    if (!activeCenterEl) return;
+
+    var touch = e.touches ? e.touches[0] : e;
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+    touchStartTime = Date.now();
+    currentDiffX = 0;
+    currentDiffY = 0;
+    isDragging = true;
+
+    deck.classList.add('is-dragging');
+
+    // Tắt transition tức thời để bám sát 1:1 theo đầu ngón tay không bị trễ
+    activeCenterEl.style.setProperty('transition', 'none', 'important');
+    if (activeLeftEl) activeLeftEl.style.setProperty('transition', 'none', 'important');
+    if (activeRightEl) activeRightEl.style.setProperty('transition', 'none', 'important');
+
+    var img = activeCenterEl.querySelector('img');
+    if (img) img.style.animationPlayState = 'paused';
+  }
+
+  function handleTouchMove(e) {
+    if (!isDragging || !activeCenterEl) return;
+    if (e.touches && e.touches.length !== 1) return;
+
+    var touch = e.touches ? e.touches[0] : e;
+    currentDiffX = touch.clientX - touchStartX;
+    currentDiffY = touch.clientY - touchStartY;
+
+    // Nếu lướt ngang nhiều hơn dọc -> Khóa cuộn dọc để giữ chắc con tem trong tay
+    if (Math.abs(currentDiffX) > Math.abs(currentDiffY) + 5) {
+      if (e.cancelable) e.preventDefault();
     }
-  }, { passive: true });
 
-  deck.addEventListener('touchmove', function(e) {
-    if (!isSwiping || e.touches.length !== 1) return;
-    touchEndX = e.touches[0].clientX;
-    touchEndY = e.touches[0].clientY;
-  }, { passive: true });
+    var progress = Math.max(-1, Math.min(1, currentDiffX / 160));
 
-  deck.addEventListener('touchend', function(e) {
-    if (!isSwiping) return;
-    isSwiping = false;
+    // 1. CON TEM Ở GIỮA BÁM DÍNH THEO ĐẦU NGÓN TAY 1:1 THỜI GIAN THỰC
+    var tx = currentDiffX;
+    var tz = 45 - Math.abs(currentDiffX) * 0.25;
+    var rot = currentDiffX * 0.08;
+    var rotY = currentDiffX * -0.1;
+    var sc = 1.08 - Math.abs(progress) * 0.12;
 
-    var diffX = touchEndX - touchStartX;
-    var diffY = touchEndY - touchStartY;
+    activeCenterEl.style.setProperty('transform', 'translateX(' + tx + 'px) translateZ(' + tz + 'px) rotate(' + rot + 'deg) rotateY(' + rotY + 'deg) scale(' + sc + ')', 'important');
+    activeCenterEl.style.setProperty('z-index', '20', 'important');
 
-    // Chỉ nhận diện vuốt ngang nếu khoảng cách > 35px và lệch ngang nhiều hơn dọc
-    if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY)) {
+    // 2. CON TEM LỚP KẾ TIẾP ĐỒNG THỜI NHÔ LÊN / RÚT LẠI THEO TAY KÉO
+    if (currentDiffX < 0) {
+      // Kéo sang trái -> Tem bên phải (chuẩn bị lên trước) trồi dần lên tâm điểm
+      var rProg = Math.abs(progress);
+      var rtx = 95 - rProg * 95;
+      var rtz = -80 + rProg * 125;
+      var rRot = -35 + rProg * 35;
+      var rSc = 0.8 + rProg * 0.28;
+      var rOp = 0.5 + rProg * 0.5;
+      if (activeRightEl) {
+        activeRightEl.style.setProperty('transform', 'translateX(' + rtx + 'px) translateZ(' + rtz + 'px) rotateY(' + rRot + 'deg) scale(' + rSc + ')', 'important');
+        activeRightEl.style.setProperty('opacity', rOp, 'important');
+        activeRightEl.style.setProperty('z-index', '10', 'important');
+      }
+
+      // Tem bên trái chìm sâu hơn ra phía sau
+      var lProg = Math.abs(progress);
+      var ltx = -95 - lProg * 35;
+      var ltz = -80 - lProg * 40;
+      var lRot = 35 + lProg * 10;
+      var lSc = 0.8 - lProg * 0.1;
+      var lOp = Math.max(0.15, 0.5 - lProg * 0.35);
+      if (activeLeftEl) {
+        activeLeftEl.style.setProperty('transform', 'translateX(' + ltx + 'px) translateZ(' + ltz + 'px) rotateY(' + lRot + 'deg) scale(' + lSc + ')', 'important');
+        activeLeftEl.style.setProperty('opacity', lOp, 'important');
+        activeLeftEl.style.setProperty('z-index', '1', 'important');
+      }
+    } else if (currentDiffX > 0) {
+      // Kéo sang phải -> Tem bên trái (chuẩn bị lên trước) trồi dần lên tâm điểm
+      var lProg = Math.abs(progress);
+      var ltx = -95 + lProg * 95;
+      var ltz = -80 + lProg * 125;
+      var lRot = 35 - lProg * 35;
+      var lSc = 0.8 + lProg * 0.28;
+      var lOp = 0.5 + lProg * 0.5;
+      if (activeLeftEl) {
+        activeLeftEl.style.setProperty('transform', 'translateX(' + ltx + 'px) translateZ(' + ltz + 'px) rotateY(' + lRot + 'deg) scale(' + lSc + ')', 'important');
+        activeLeftEl.style.setProperty('opacity', lOp, 'important');
+        activeLeftEl.style.setProperty('z-index', '10', 'important');
+      }
+
+      // Tem bên phải chìm sâu hơn ra phía sau
+      var rProg = Math.abs(progress);
+      var rtx = 95 + rProg * 35;
+      var rtz = -80 - rProg * 40;
+      var rRot = -35 - rProg * 10;
+      var rSc = 0.8 - rProg * 0.1;
+      var rOp = Math.max(0.15, 0.5 - rProg * 0.35);
+      if (activeRightEl) {
+        activeRightEl.style.setProperty('transform', 'translateX(' + rtx + 'px) translateZ(' + rtz + 'px) rotateY(' + rRot + 'deg) scale(' + rSc + ')', 'important');
+        activeRightEl.style.setProperty('opacity', rOp, 'important');
+        activeRightEl.style.setProperty('z-index', '1', 'important');
+      }
+    }
+  }
+
+  function handleTouchEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    deck.classList.remove('is-dragging');
+
+    if (!activeCenterEl) return;
+
+    var diffX = currentDiffX;
+    var diffY = currentDiffY;
+    var elapsed = Math.max(1, Date.now() - touchStartTime);
+    var velocityX = Math.abs(diffX) / elapsed;
+
+    var img = activeCenterEl.querySelector('img');
+    if (img) img.style.animationPlayState = 'running';
+
+    // Bật lại hiệu ứng chuyển động quán tính lò xo mượt mà (Spring Physics)
+    var spring = 'transform 0.48s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.48s ease';
+    activeCenterEl.style.setProperty('transition', spring, 'important');
+    if (activeLeftEl) activeLeftEl.style.setProperty('transition', spring, 'important');
+    if (activeRightEl) activeRightEl.style.setProperty('transition', spring, 'important');
+
+    // Xác nhận đổi tem nếu kéo qua ngưỡng 42px hoặc quẹt nhanh với vận tốc cao
+    var shouldRotate = Math.abs(diffX) > 42 || (Math.abs(diffX) > 20 && velocityX > 0.45);
+
+    if (shouldRotate) {
       if (diffX < 0) {
-        // Vuốt sang trái -> Đảo tiếp theo (rotateForward)
+        // Thả tay: Tem đang cầm rớt ra sau bên trái, tem mới bung lên chính giữa
         if (typeof rotateForward === 'function') rotateForward();
       } else {
-        // Vuốt sang phải -> Đảo lùi lại (rotateBackward)
+        // Thả tay: Tem đang cầm rớt ra sau bên phải, tem mới bung lên chính giữa
         if (typeof rotateBackward === 'function') rotateBackward();
       }
     } else if (Math.abs(diffX) < 10 && Math.abs(diffY) < 10) {
-      // Chạm nhẹ (Tap) vào thẻ giữa -> Mở xem phóng to HD
+      // Chạm nhẹ (Tap) vào tem giữa -> Xem phóng to HD
       var centerIdx = (typeof currentCenterItem !== 'undefined') ? currentCenterItem : 0;
       if (typeof openTemplateModal === 'function' && typeof stickerList !== 'undefined') {
         var item = stickerList[centerIdx];
@@ -9277,8 +9415,38 @@ document.addEventListener('DOMContentLoaded', function() {
           });
         }
       }
+    } else {
+      // Kéo nhẹ rồi buông tay (< 42px) -> Đàn hồi bật trở lại tâm điểm (Rubber-band snap back)
+      if (typeof applySlots === 'function') applySlots();
     }
-  }, { passive: true });
+
+    // Xóa inline transform để class CSS vị trí tiếp quản với transition spring
+    activeCenterEl.style.removeProperty('transform');
+    activeCenterEl.style.removeProperty('z-index');
+    activeCenterEl.style.removeProperty('opacity');
+    if (activeLeftEl) {
+      activeLeftEl.style.removeProperty('transform');
+      activeLeftEl.style.removeProperty('z-index');
+      activeLeftEl.style.removeProperty('opacity');
+    }
+    if (activeRightEl) {
+      activeRightEl.style.removeProperty('transform');
+      activeRightEl.style.removeProperty('z-index');
+      activeRightEl.style.removeProperty('opacity');
+    }
+
+    // Sau khi kết thúc chuyển động, thu hồi transition inline
+    setTimeout(function() {
+      if (activeCenterEl) activeCenterEl.style.removeProperty('transition');
+      if (activeLeftEl) activeLeftEl.style.removeProperty('transition');
+      if (activeRightEl) activeRightEl.style.removeProperty('transition');
+    }, 500);
+  }
+
+  deck.addEventListener('touchstart', handleTouchStart, { passive: true });
+  deck.addEventListener('touchmove', handleTouchMove, { passive: false });
+  deck.addEventListener('touchend', handleTouchEnd, { passive: true });
+  deck.addEventListener('touchcancel', handleTouchEnd, { passive: true });
 })();
 </script>
 
