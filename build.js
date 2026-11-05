@@ -23,6 +23,7 @@ const items = [
   'index.html',
   'og-banner.png',
   'DEMO_STICKER_GIAMINH.html',
+  'DEMO_OPTION_2.html',
   'assets',
   'HINH XOAY',
   'logo-gm-emblem.png',
