@@ -7994,13 +7994,13 @@ body.phone-mode .visitor-counter {
       <!-- BỘ ĐẾM TRUY CẬP (VISITOR COUNTER) -->
       <div class="visitor-counter">
         <span class="online-pulse-dot" title="Đang hoạt động"></span>
-        <span>Đang online: <strong>2</strong></span>
+        <span>Đang online: <strong id="counterOnline">1</strong></span>
         <span>•</span>
-        <span>Hôm nay: <strong>48</strong></span>
+        <span>Hôm nay: <strong id="counterToday">30</strong></span>
         <span>•</span>
-        <span>Tháng này: <strong>386</strong></span>
+        <span>Tháng này: <strong id="counterMonth">221</strong></span>
         <span>•</span>
-        <span>Tổng lượt xem: <strong>1.520</strong></span>
+        <span>Tổng lượt xem: <strong id="counterTotal">1.682</strong></span>
       </div>
     </div>
   </footer>
@@ -9490,5 +9490,53 @@ function filterByCat(cat, ev) {
 }
 </script>
 
+
+<!-- REAL GA4 VISITOR COUNTER SYNC -->
+<script>
+(function() {
+  function syncVisitorCounter() {
+    fetch('/api/counter')
+      .then(function(res) {
+        if (!res.ok) throw new Error('API status ' + res.status);
+        return res.json();
+      })
+      .then(function(data) {
+        if (!data) return;
+        var elOnline = document.getElementById('counterOnline');
+        var elToday = document.getElementById('counterToday');
+        var elMonth = document.getElementById('counterMonth');
+        var elTotal = document.getElementById('counterTotal');
+        if (elOnline && typeof data.online !== 'undefined') elOnline.textContent = data.online;
+        if (elToday && typeof data.today !== 'undefined') elToday.textContent = Number(data.today).toLocaleString('vi-VN');
+        if (elMonth && typeof data.month !== 'undefined') elMonth.textContent = Number(data.month).toLocaleString('vi-VN');
+        if (elTotal && typeof data.total !== 'undefined') elTotal.textContent = Number(data.total).toLocaleString('vi-VN');
+      })
+      .catch(function(err) {
+        fetch('/stats.json')
+          .then(function(r) { return r.json(); })
+          .then(function(d) {
+            var elOnline = document.getElementById('counterOnline');
+            var elToday = document.getElementById('counterToday');
+            var elMonth = document.getElementById('counterMonth');
+            var elTotal = document.getElementById('counterTotal');
+            if (elOnline && d.online) elOnline.textContent = d.online;
+            if (elToday && d.today) elToday.textContent = Number(d.today).toLocaleString('vi-VN');
+            if (elMonth && d.month) elMonth.textContent = Number(d.month).toLocaleString('vi-VN');
+            if (elTotal && d.total) elTotal.textContent = Number(d.total).toLocaleString('vi-VN');
+          })
+          .catch(function() {});
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', syncVisitorCounter);
+  } else {
+    syncVisitorCounter();
+  }
+
+  // Auto refresh every 45s
+  setInterval(syncVisitorCounter, 45000);
+})();
+</script>
 </body>
 </html>
